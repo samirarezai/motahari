@@ -1,0 +1,25 @@
+<div class="notify-container public-box-shadow position-relative"
+     style="background-color: white"
+     [ngClass]="{'success-border': type===0, 'failed-border':type===1,'info-border':type===2 }">
+  <div class="row">
+    <a (click)="close()">
+      <div class="icon-close close-position"></div>
+    </a>
+    <div class="col-md-12 text pl-3">
+      <span [textContent]="message"></span>
+    </div>
+    <div class="icon-container">
+      <div class="icon-checked" *ngIf="type===0"></div>
+      <div *ngIf="type===1">
+      <span class="icon-warning">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>
+      </div>
+      <div *ngIf="type===2">
+        <span class="icon-information">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                </span>
+      </div>
+    </div>
+  </div>
+</div>

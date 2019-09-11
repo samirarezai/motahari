@@ -1,0 +1,42 @@
+@import "../../../scss/variable";
+
+.quiz-modal-container {
+  height: 100%;
+
+  .quiz-result-top {
+    background-color: $color-base-site;
+    padding: 2em 1em;
+    width: 100%;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    color: white;
+  }
+
+  .quiz-result-bottom-container {
+    margin-top: 2em;
+    border-bottom: 1px $color-text-dark dashed;
+    padding-bottom: 2em;
+  }
+
+  .result-number-n {
+    padding-left: 1em;
+  }
+
+  .result-number-s {
+    padding-left: 1em;
+    color: $color-base-site;
+  }
+
+  .result-number-w {
+    padding-left: 1em;
+    color: $color-red;
+  }
+
+  .success-text {
+    color: $color-base-site;
+  }
+
+  .failed-text {
+    color: $color-red;
+  }
+}

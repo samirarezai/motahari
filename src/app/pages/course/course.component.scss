@@ -1,0 +1,16 @@
+@import "../../../scss/variable";
+
+
+.course-rules-container {
+  border-radius: $box-list-border-radius;
+
+  .details-row {
+    display: flex;
+
+    .triangle-left{
+      margin: 0;
+      vertical-align: middle;
+    }
+  }
+
+}

@@ -1,0 +1,103 @@
+<div class="col-md-12 login-modal-container">
+  <div class="row">
+    <div class="col-md-6 right-side" *ngIf="isShowPhoneInput===true">
+      <div class="text-center my-5 col-md-12">
+        <span class="icon-phone color-green-base"></span>
+        <span>شماره موبایل خود را وارد نمایید</span>
+      </div>
+      <div class="col-md-10 phone-number">
+        <div class="row">
+          <div class="col-md-9">
+            <input class="form-control input-phone public-border" placeholder="9123456789" type="tel"
+                   pattern="09[0-9]{9}"
+                   maxlength="11"
+                   (keyup.enter)="login()"
+                   [(ngModel)]="phoneNumber">
+          </div>
+          <div class="col-md-3" style="padding-right: 0">
+            <input class="form-control input-phone" placeholder="98+" type="number" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <span *ngIf="errorMessage!==null && errorMessage!==''" [textContent]="errorMessage" style="color: red"></span>
+      </div>
+      <div class="col-md-8 send-button my-5 text-center">
+        <button class="blue-button-border" (click)="login()" type="button">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                *ngIf="isShowLoading===true"></span>
+          <span *ngIf="isShowLoading===false">ارسال کد تایید</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 right-side" *ngIf="isShowPhoneInput===false">
+      <div class="text-center my-5 col-md-12">
+        <span class="icon-phone px-3 color-green-base"></span>
+        <span [textContent]="message"></span>
+      </div>
+      <div class="col-md-12 pt-4">
+        <div class="row justify-content-center">
+          <div class="col-2 p-0 input-verify-code">
+            <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+                   minlength="1"
+                   (keyup.enter)="verify()"
+                   [(ngModel)]="code5" #inputE5>
+          </div>
+          <div class="col-2 p-0 input-verify-code">
+            <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+                   minlength="1"
+                   (ngModelChange)=checkCode4()
+                   [(ngModel)]="code4" #inputE4>
+          </div>
+          <div class="col-2 p-0 input-verify-code">
+            <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+                   minlength="1"
+                   (ngModelChange)=checkCode3()
+                   [(ngModel)]="code3" #inputE3>
+          </div>
+          <div class="col-2 p-0 input-verify-code">
+            <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+                   minlength="1"
+                   (ngModelChange)=checkCode2()
+                   [(ngModel)]="code2" #inputE2>
+          </div>
+          <div class="col-2 p-0 input-verify-code">
+            <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+                   minlength="1"
+                   (ngModelChange)=checkCode1()
+                   [(ngModel)]="code1" #inputEl>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <span *ngIf="errorMessage!==null && errorMessage!==''" [textContent]="errorMessage" style="color: red"></span>
+      </div>
+      <div class="col-md-8 my-5 text-center send-button">
+        <button class="blue-button-border mb-3" (click)="backPhone()" style="background-color: #707070">
+          <span *ngIf="isShowLoading===false">ویرایش شماره</span>
+        </button>
+        <button class="blue-button-border" (click)="verify()">
+             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                   *ngIf="isShowLoading===true"></span>
+          <span *ngIf="isShowLoading===false">تایید کد</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-6 left-side p-3">
+      <div style="  height: 80%;width: 100%;">
+        <div class="col-md-12 logo-holder">
+        </div>
+        <div src="assets/images/img_motahari_name.png" class="logo-image-holder"></div>
+      </div>
+      <div class="col-md-12 mt-2" style="color:white;padding: 0;text-align: center">
+        <h1>بنیاد علمی و فرهنگی استاد شهید مرتضی مطهری</h1>
+      </div>
+      <div class="close-container">
+        <a (click)="close()">
+          <span class="icon-close"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<app-loading *ngIf="stepList===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="books-container">
+    <div class="container course-main" *ngIf="match!==undefined">
+      <div class="row">
+        <div class="col-md-6">
+          <img [src]="match.multimedia.url" class="img-fluid public-box-shadow image-border"
+               style="width: 100%; height: 300px;"/>
+        </div>
+        <div class="col-md-6">
+          <div class="book-title" [textContent]="match.title"></div>
+          <div class="row mt-3">
+            <div class="col-md-6 text-right">
+              <div class="sample-title mt-1">
+                <span>تاریخ شروع :</span>
+                <span class="mx-1" [textContent]="match.startTime | timeToDate"></span>
+              </div>
+              <div class="sample-title mt-1">
+                <span>تاریخ پایان :</span>
+                <span class="mx-1" [textContent]="match.expireTime | timeToDate"></span>
+              </div>
+              <div class="sample-title mt-3 golden-title">
+                <span>امتیاز کلی شما : </span>
+                <span class="mx-1" [textContent]="totalRate"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container margin-top-page-container" *ngIf="stepList!==undefined">
+  <div class="mt-5 pt-5 col-md-12">
+    <div class="row">
+      <span class="green-title">توضیحات مسابقه</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-2">
+      <div class="match-info-box public-border">
+        <!--<span [textContent]="match.description"></span>-->
+        <span [innerText]="match.description"></span>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 col-md-12">
+    <div class="row">
+      <span class="green-title">مراحل مسابقه</span>
+    </div>
+  </div>
+  <div class="col-md-12 py-0 mt-2 px-0 step-list-container public-border">
+    <div *ngFor="let step of stepList" class="step-row-container">
+      <div class="row py-3 step-row">
+        <div class="col-md-8">
+          <span *ngIf="step.allowed===true" class="dot"></span>
+          <span *ngIf="step.allowed===false" class="dot-gray"></span>
+          <span class="step-row-title" [ngClass]="{'disable-text':step.allowed===false}"
+                [textContent]="step.title"></span>
+          <div>
+            <span [ngClass]="{'disable-text':step.allowed===false}" [textContent]="step.description"
+                  class="mr-4 step-row-title"></span>
+          </div>
+        </div>
+        <div class="col-md-4 text-left">
+          <div class="row">
+            <div class="col">
+              <!--<a routerLink="/quiz/{{step.course.id}}/{{step.id}}/{{step.quiz.id}}" *ngIf="step.allowed===true">-->
+              <a (click)="goToQuiz(step)" *ngIf="step.allowed===true">
+                <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' "
+                        class=" ml-2" *ngIf="step.quiz!==null && step.passed===false">آزمون
+                </button>
+              </a>
+              <div style="display: inline-block" *ngIf="step.allowed===false">
+                <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' "
+                        class=" ml-2"  *ngIf="step.quiz!==null && step.passed===false">آزمون
+                </button>
+              </div>
+              <a (click)="step.isOpen= !step.isOpen">
+                <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' "
+                        class="ml-2" *ngIf="step.passed===true">مشاهده نتیجه
+                </button>
+              </a>
+              <a routerLink="/match-info/{{step.id}}" *ngIf="step.allowed===true">
+                <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' ">مشاهده متن
+                </button>
+              </a>
+              <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' "
+                      *ngIf="step.allowed===false">مشاهده متن
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mx-2 row-toggle" [ngClass]="{'open-row-toggle': step.isOpen==true}">
+        <div class="mx-4 mb-2 w-100">
+          <div class="col-md-12 quiz-result-container">
+            <div class="row">
+              <div class="col-md-5 step-multimedia-container">
+                <span class="icon-exam" style="font-size: 18px;"></span>
+                <span class="mr-2">امتیاز شما از این آزمون :</span>
+                <span class="mr-1" [textContent]="step.rate"></span>
+              </div>
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col">
+                    <div class="triangle-left"></div>
+                    <span>تعداد کل سوالات :</span>
+                    <span class="mr-1" [textContent]="step.quiz.questionCount"></span>
+                  </div>
+                  <div class="col">
+                    <div class="triangle-left"></div>
+                    <span>تعداد پاسخ صحیح :</span>
+                    <span class="mr-1" [textContent]="step.rightPoint"></span>
+                  </div>
+                  <div class="col">
+                    <div class="triangle-left"></div>
+                    <span>تعداد پاسخ اشتباه :</span>
+                    <span class="mr-1" [textContent]=" step.quiz.questionCount - step.rightPoint"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-12 divider-horizontal"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-4 button-blue-info">
+      <div class="d-flex justify-content-center">
+        <span class="icon-badge" style="margin-top: 3px"></span>
+        <span class="mr-1">امتیاز شما :</span>
+        <span class="mr-1" [textContent]="totalRate"></span>
+      </div>
+    </div>
+  </div>
+</div>
+

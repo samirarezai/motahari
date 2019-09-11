@@ -1,0 +1,84 @@
+@import "../../../scss/variable";
+
+.login-modal-container {
+  height: 100%;
+
+  .row {
+    height: 100%;
+  }
+
+  .right-side {
+    height: 100%;
+
+
+    .phone-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+
+      input {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .left-side {
+    background-color: $color-base-site;
+    border-top-left-radius: $border-radius-modal;
+    border-bottom-left-radius: $border-radius-modal;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .logo-holder {
+      background-image: url("../../../assets/images/img_holy_circle.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 50%;
+      -webkit-animation: progress-indef 140s linear infinite;
+      -moz-animation: progress-indef 140s linear infinite;
+      -o-animation: progress-indef 140s linear infinite;
+      animation: progress-indef 140s linear infinite;
+    }
+
+    .logo-image-holder{
+      background-image: url("../../../assets/images/img_motahari_name.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: -11%;
+      left: 0;
+    }
+
+    .close-container {
+      background-color: $color-white;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-top-left-radius: $border-radius-modal;
+      padding: 1em;
+      color: $color-red;
+    }
+  }
+}
+
+.input-code {
+  background-color: white;
+}
+.input-code:focus{
+  border: 1px $color-base-site solid;
+  box-shadow: 0 0 0 0.2rem #15b0a82b;
+}
+

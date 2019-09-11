@@ -1,0 +1,21 @@
+<div class="lecture-el-container public-box-shadow mb-3">
+  <div>
+    <ul>
+      <li><span class="dot"></span><span [textContent]="lecture.title"></span></li>
+    </ul>
+  </div>
+  <div class="mt-3 row ">
+    <div class="col-md-6 col-lg-7 mt-1 text-description-color">
+
+      <span class="mr-2" [textContent]="lecture.multiMedia.size+'MB'"></span>
+      <span class="mr-2 icon-download golden-color"></span>
+      <span class="mr-2" [textContent]="lecture.multiMedia.duration | minutesConverter"></span>
+      <span class="icon-time"></span>
+    </div>
+    <div class="col-md-6 col-lg-5 pr-md-0">
+      <a (click)="addToDownloadHistory(lecture)" href="{{lecture.multiMedia.url}}" target="_blank">
+        <button class="blue-button-border mr-auto">دانلود سخنرانی</button>
+      </a>
+    </div>
+  </div>
+</div>

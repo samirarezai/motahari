@@ -1,0 +1,122 @@
+<app-loading *ngIf="book===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="container course-main" *ngIf="book!==undefined" style="top: 7em">
+    <div class="row">
+      <div class="col-md-2 p-0">
+        <div>
+          <img [src]="book.thumbnail.url" class="image-border img-fluid"/>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6 pr-5 text-right">
+            <div class="book-title" [textContent]="book.title"></div>
+            <div class="sample-title mt-4">
+              <span>گویندگان :</span> <span class="mx-3" [textContent]="book.audio.announcer"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+
+            <div class="col-md-6 mr-auto mt-5">
+              <a [href]="book.audio.cdLink" target="_blank">
+                <button class="button-top">خرید لوح فشرده</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12" style="text-align: justify">
+            <span [textContent]="book.audio.description"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top: 14em;" *ngIf="book!==undefined && book.audio!==undefined">
+  <div class="mt-5">
+    <div class="row">
+      <div class="col-md-2 p-0">
+        <div>
+          <span class="green-title">مشخصات</span>
+        </div>
+        <div class="public-border p-3 pb-3 audio-details-container mt-3">
+          <div class="row-container">
+            <div class="triangle-custom-container">
+              <span class="triangle-left"></span>
+            </div>
+            <span>حجم فایل</span>
+            <span class="left-side" style="direction: ltr">  {{book.totalSize}} MB </span>
+          </div>
+          <div class="row-container">
+            <div class="triangle-custom-container">
+              <span class="triangle-left"></span>
+            </div>
+            <span>تعداد فایل‌ها</span>
+            <span class="left-side">{{book.audio.multimediaList.length}}</span>
+          </div>
+          <div class="row-container">
+            <div class="triangle-custom-container">
+              <span class="triangle-left"></span>
+            </div>
+            <span>مدت زمان</span>
+            <span class="left-side">{{book.totalTime | minutesConverter}}</span>
+
+          </div>
+          <div class="row-container mt-5" style="border-bottom: 0">
+            <div class="triangle-custom-container">
+              <span class="triangle-left"></span>
+            </div>
+            <span>قیمت</span>
+            <span class="left-side" *ngIf="book.audio.price!==0">{{book.audio.price}} تومان</span>
+            <span class="left-side" *ngIf="book.audio.price===0">رایگان</span>
+          </div>
+          <div>
+            <a (click)="buyAudioBook()">
+              <button class="blue-button-border" *ngIf="book.audio.price!==0 && book.audio.buy===false">خرید فایل
+                صوتی
+              </button>
+            </a>
+            <button class="blue-button-border" *ngIf="book.audio.price!==0 && book.audio.buy===true">خریداری شده
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div>
+          <span class="green-title">فایل‌های صوتی</span>
+        </div>
+        <div class="audio-file-list-container public-border public-box-shadow mt-3">
+          <div class="col-md-12 py-3 px-5" *ngFor="let item of book.audio.finalMediaList">
+            <div>
+              <span class="dot" [ngClass]="{'dot-gray':item.url===null}"></span>
+              <span [textContent]="item.description" [ngClass]="{'disable-text':item.url===null}"></span>
+            </div>
+            <div class="row pb-2 single-row">
+              <div class="col-md-9 audio-file-details-container">
+                <div class="my-auto audio-file-span">
+                  <span class="mr-2" [textContent]="item.duration | minutesConverter"></span>
+                  <span class="icon-time" [ngClass]="{'icon-time-disable':item.url === null}"></span>
+                  <div style="direction: ltr;" class="d-inline-block">
+                    <span class="mr-2"> {{item.size}} MB</span>
+                    <span class="mr-4 icon-download" [ngClass]="{'icon-download-disable':item.url === null}"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 px-4">
+                <a (click)="downloadLink(item)" *ngIf="(item.price!==0 && item.initBuy===true) || item.price===0">
+                  <button class="blue-button-border w-100 py-2"> دانلود</button>
+                </a>
+                <button *ngIf="item.url ===null"
+                        [ngClass]="{'disable-button': item.initBuy===false}"
+                        class="w-100 py-2"> دانلود
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

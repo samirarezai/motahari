@@ -1,0 +1,20 @@
+<div class="col-md-12 pr-1 pl-4" [ngClass]="(item.level===0)?'book-index-main-title':'book-index-subtitle'">
+  <a (click)="onTitleClick(item)">
+    <span [ngClass]="{'ml-2':hasChildren===true}" class="ml-2"
+          [ngStyle]="{'padding-right': item.level * 8 + 'px'}">{{item.title}}</span>
+  </a>
+  <a (click)="toggleChildren()">
+    <span *ngIf="hasChildren===true" class="text-left mr-auto arrow-position"
+          [ngClass]="(areChildrenOpen===true) ? 'icon-up-arrow':'icon-down-arrow'"></span>
+  </a>
+
+</div>
+<ul *ngIf="areChildrenOpen">
+  <li *ngFor="let child of item.subTitles">
+    <app-sub-title [item]="child" [hasParent]="true" (titleClicked)="onTitleClick(child)" (toggleClicked)="toggleChildren()"></app-sub-title>
+  </li>
+</ul>
+
+
+<!--<button *ngIf="hasChildren" type="button" class="toggleBtn" >Toggle Children</button>
+    <button *ngIf="hasParent" type="button" class="toggleBtn" (click)="toggleParent()">Toggle Parent</button>-->

@@ -1,0 +1,53 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container-fluid my-pages-top"></div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="title-with-underline">
+      <span>کتابخانه من</span>
+    </div>
+  </div>
+  <div class="row mt-5" style="position: relative">
+    <div class="col-md-12">
+      <a (click)="onTabClick(0)">
+        <span class="mr-4">کتاب‌های من</span>
+      </a>
+      <a (click)="onTabClick(1)">
+        <span class="mr-4 pr-3">کتاب‌های صوتی من</span>
+      </a>
+      <a (click)="onTabClick(2)">
+        <span class="mr-4 pr-3">سخنرانی‌های من</span>
+      </a>
+    </div>
+    <div class="divider-green-small myBook-word-underline" *ngIf="tabState===0"></div>
+    <div class="divider-green-small myAudio-word-underline" *ngIf="tabState===1"></div>
+    <div class="divider-green-small myLecture-word-underline" *ngIf="tabState===2"></div>
+    <div class="col-md-12 px-0 divider-green-horizontal-main">
+      <span class="icon-right-design"></span>
+      <div class="divider-green-horizontal-container">
+        <div class="divider-green-horizontal"></div>
+      </div>
+      <span class="icon-left-design"></span>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="row px-3">
+      <div *ngIf="tabState===0" class="row">
+        <div class="col-md-6" *ngFor="let myBook of myBookList">
+          <app-my-book-box [book]="myBook"></app-my-book-box>
+        </div>
+      </div>
+      <div *ngIf="tabState===1" class="row">
+        <div class="col-md-6" *ngFor="let myAudioBook of myAudioBookList">
+          <app-my-audio-book-box [book]="myAudioBook"></app-my-audio-book-box>
+        </div>
+      </div>
+      <div *ngIf="tabState===2" class="col-md-12 px-0">
+        <div class="row">
+          <div class="col-md-6 pr-0 mt-3" *ngFor="let myLecture of myLectureList">
+            <app-lecture-element [lecture]="myLecture"></app-lecture-element>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

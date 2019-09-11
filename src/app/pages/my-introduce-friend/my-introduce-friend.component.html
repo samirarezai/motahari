@@ -1,0 +1,66 @@
+<div class="container-fluid my-pages-top"></div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="title-with-underline">
+      <span>معرفی به دوستان</span>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-7 p-0 intro-container public-border">
+      <div class="intro-top text-center p-4">
+        <span>سامانه استاد مطهری را به دوستان خود معرفی کنید</span>
+      </div>
+      <div class="intro-bottom p-4">
+        <span style="line-height: 2.5">
+شما با معرفی سایت و اپلیکیشن استاد مطهری به دوستان خود می‌توانید امتیازات خود را افزایش دهید. کافی است دوستان شما کد شما را به عنوان کد معرف، پس از ورود به سامانه وارد نمایند. به ازای هر نفر، 5 امتیاز به امتیازات شما اضافه می‌شود.
+        </span>
+        <div class="row justify-content-center">
+          <div class="col-md-5 public-border mt-5">
+            <div class="col-md-12 text-center py-2">
+              <span>کد شما : </span>
+            </div>
+            <div class="col-md-12 text-center py-2 golden-color font-weight-bold">
+              <span [textContent]="userInfo.invitationCode" *ngIf="userInfo!==undefined"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <!--<div class="col-md-5 mt-3 share-container">
+            <a>
+              <div class="share-icon-container">
+                <span class="icon-telegram"></span>
+              </div>
+            </a>
+            <a>
+              <div class="share-icon-container">
+                <span class="icon-whatsapp"></span>
+              </div>
+            </a>
+            <a>
+              <div class="share-icon-container">
+                <span class="icon-soroush"></span>
+              </div>
+            </a>
+          </div>-->
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-8 green-border public-box-shadow">
+            <div class="py-2">
+              <span>درصورتیکه کد معرف دارید آن را وارد کنید</span>
+            </div>
+            <div class="col-md-12 my-3">
+              <div class="row">
+                <div class="col-md-8">
+                  <input class="input-code public-border" [(ngModel)]="introCode"/>
+                </div>
+                <div class="col-md-4">
+                  <button class="blue-button-border" (click)="submitCode()">ثبت</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

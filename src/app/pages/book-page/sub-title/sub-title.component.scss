@@ -1,0 +1,26 @@
+@import "../../../../scss/variable";
+
+.toggleBtn {
+  margin: 5px;
+}
+
+
+.book-index-main-title{
+  background-color: $book-index-main-title-bg;
+  padding: 1.4em 0.4em;
+  font-size: $font-size-small;
+  border-bottom: 1px $book-index-main-bottom-border solid;
+}
+
+.book-index-subtitle{
+  background-color: $color-white;
+  padding: 1.4em 0.4em;
+  font-size: $font-size-small;
+  border-bottom: 1px $book-index-main-bottom-border solid;
+}
+
+.arrow-position{
+  position: absolute;
+  left: 1em;
+  top: 50%;
+}

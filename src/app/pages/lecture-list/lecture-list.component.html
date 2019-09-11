@@ -1,0 +1,95 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container top-search">
+  <div class="row row-container">
+    <div class="col-md-6">
+      <span class="title-with-underline-white">سخنرانی‌ها</span>
+    </div>
+    <div class="col-md-6">
+      <div class="single-search-input right-box" *ngIf="lectureTab===1">
+        <input placeholder="عبارت جستجو..." class="p-2"
+               [(ngModel)]="searchText"
+               (keyup.enter)="callSearchLecture()"
+        />
+        <div class="search-side">
+          <a (click)="callSearchLecture()">
+            <span class="icon-magnifying-glass"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position: relative">
+  <app-top-background [isSmall]="true"></app-top-background>
+</div>
+<div class="container mt-4">
+  <div class="col-md-12 mainContainerScroll">
+    <div class="row" style="position: relative" >
+      <div class="col-md-12">
+        <a (click)="onTabClick(0)">
+          <span class="mr-4">همه</span>
+        </a>
+        <a (click)="onTabClick(1)">
+          <span class="mr-4">جستجو در سخنرانی‌ها</span>
+        </a>
+        <a (click)="onTabClick(2)" *ngIf="isLoggedIn$ | async">
+          <span class="mr-4 pr-3">سخنرانی‌های من</span>
+        </a>
+      </div>
+      <div class="divider-green-small all-word-underline" *ngIf="lectureTab===0"></div>
+      <div class="divider-green-small search-word-underline" *ngIf="lectureTab===1"></div>
+      <div class="divider-green-small my-word-underline" *ngIf="lectureTab===2"></div>
+      <div class="col-md-12 pr-0 divider-green-horizontal-main">
+        <span class="icon-right-design "></span>
+        <div class="divider-green-horizontal-container">
+          <div class="divider-green-horizontal"></div>
+        </div>
+        <span class="icon-left-design"></span>
+      </div>
+    </div>
+    <div *ngIf="lectureTab===0" class="row mt-4">
+      <div class="col-md-12" *ngIf="showLoading===false">
+        <div class="row ">
+          <div class="col-md-6 subject-container public-border p-1">
+            <div class="subject-title">
+              <span>موضوعات</span>
+            </div>
+            <div class="col-md-12 subject-row" *ngFor="let lectureSubject of lectureSubjects"
+                 (click)="selectSubject(lectureSubject)"
+                 [ngClass]="{'lecture-subject-select':lectureSubject.isClick===true}">
+              <div class="text-right">
+                <span [textContent]="lectureSubject.title"></span>
+                (<span>{{lectureSubject.lectures.length}} جلسه</span>)
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="overflow: hidden;overflow-y: scroll; height: 68em;">
+            <div class="col-md-12" *ngFor="let lecture of lectureList">
+              <app-lecture-element (downloadClick)="onDownloadClick(lecture)" [lecture]="lecture"></app-lecture-element>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="lectureTab===1" class="row mt-4">
+      <div class="col-md-12" *ngIf="searchLectureList!==null && searchLectureList.length!==0">
+        <div class="row">
+          <div class="col-md-6"
+               *ngFor="let searchLecture of searchLectureList">
+            <app-lecture-element [lecture]="searchLecture"></app-lecture-element>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="searchLectureList!==null &&  searchLectureList.length===0">
+        <div class=" text-center" style=" position: absolute;left: 50%;">
+          <span>نتیجه ای یافت نشد</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="lectureTab===2" class="row mt-4">
+      <div class="col-md-6" *ngFor="let myLecture of myLectureList">
+        <app-lecture-element [lecture]="myLecture"></app-lecture-element>
+      </div>
+    </div>
+  </div>
+</div>

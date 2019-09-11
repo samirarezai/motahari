@@ -1,0 +1,131 @@
+<app-loading *ngIf="bookIndexList===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="true"></app-top-background>
+  <div class="container">
+    <div class="book-title">
+      <span>عنوان : </span><span [textContent]="title"></span>
+    </div>
+  </div>
+</div>
+<div class="container mt-4" *ngIf="bookIndexList!==undefined && bookIndexList!==null">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3 pr-0">
+        <div class="book-page-setting p-1">
+          <div class="index-book-title py-2 mr-1">
+            <span>فهرست</span>
+          </div>
+          <div class="col-md-12 px-1" >
+            <ul>
+              <li *ngFor="let item of bookIndexList">
+                <app-sub-title (titleClicked)="onTitleClicked($event)" [item]="item"
+                               [hasParent]="false"></app-sub-title>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="mb-3 book-page-mainText"
+               *ngFor="let item of bookPages| paginate: { itemsPerPage: 1, currentPage: page }">
+            <span class="pb-3" [innerHtml]="item.page"
+                  [ngClass]="{'font-arial': selectFont==1, 'font-bNazanin':selectFont==2,'font-iranSans':selectFont==3 }"
+                  [ngStyle]="{'line-height': initLineHeight,'font-size':initFontSizeStr}"></span>
+            <div *ngIf="item.foot!==null && item.foot!==undefined" class="mt-4" style="border-top: 1px gray solid">
+              <span style="display: inline-block"
+                    [ngClass]="{'font-arial': selectFont==1, 'font-bNazanin':selectFont==2,'font-iranSans':selectFont==3 }"
+                    [ngStyle]="{'line-height': initLineHeight,'font-size':initFontSizeStr}"
+                    class="pt-2" [innerHTML]="item.foot"></span>
+            </div>
+            <pagination-controls [responsive]="true" [nextLabel]="'صفحه بعدی'" [previousLabel]="'صفحه قبلی'"
+                                 class="mt-4 text-center" (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pl-0">
+        <div class="book-page-setting p-2">
+          <div class="text-setting">
+            <div class="text-setting-title p-2">
+              <span></span><span class="pr-1">تنظیمات متن </span>
+            </div>
+            <div class="col-md-12 setting-body">
+              <div>اندازه فونت</div>
+              <div class="py-3">
+                <ng5-slider [(value)]="initFontSize" [options]="fontSizeOptions"
+                            (userChange)="onFontSizeChange()"></ng5-slider>
+              </div>
+            </div>
+            <div class="col-md-12 setting-body">
+              <div>فاصله بین خطوط</div>
+              <div class="py-3">
+                <ng5-slider [(value)]="initLineHeight"
+                            [options]="lineHeightOptions"></ng5-slider>
+              </div>
+            </div>
+            <div class="col-md-12 setting-body">
+              <div>نوع فونت</div>
+              <div style="display: flex;align-items: center;justify-content: center">
+                <a (click)="selectFont=1">
+                  <div class="text-center fontContainer mt-3 pt-3 font-arial"
+                       [ngClass]="{'fontContainerBorder':selectFont===1}">
+                    <div [ngClass]="{'fontContainerSelect':selectFont===1}">
+                      <span>آب</span>
+                    </div>
+                  </div>
+                  <div class="text-center font-title font-arial">
+                    آریال
+                  </div>
+                </a>
+                <a (click)="selectFont=2">
+                  <div class="text-center fontContainer mt-3 pt-3 font-bNazanin"
+                       [ngClass]="{'fontContainerBorder':selectFont===2}">
+                    <div [ngClass]="{'fontContainerSelect':selectFont===2}">
+                      <span>آب</span>
+                    </div>
+                  </div>
+                  <div class="text-center font-title font-bNazanin">
+                    نازنین
+                  </div>
+                </a>
+                <a (click)="selectFont=3">
+                  <div class="text-center fontContainer mt-3 pt-3 font-iranSans"
+                       [ngClass]="{'fontContainerBorder':selectFont===3}">
+                    <div [ngClass]="{'fontContainerSelect':selectFont===3}">
+                      <span>آب</span>
+                    </div>
+                  </div>
+                  <div class="text-center font-title font-iranSans">
+                    ایرانسنس
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-12 setting-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <span>برو به صفحه :</span>
+                </div>
+                <div class="col-md-8 my-3">
+                  <input class="input-code" [(ngModel)]="customPageNumber" type="tel"
+                         (keyup.enter)="goToPage()"
+                         maxlength="4" style="border-radius: 2px;padding-right: 5px;" placeholder="شماره صفحه">
+                </div>
+                <div class="col-md-4 my-3">
+                  <button class="button-simple-green w-100" (click)="goToPage()">برو</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--<div class="mt-5">
+            <a>
+              <button class="green-button quiz-button"> آزمون دوره</button>
+            </a>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

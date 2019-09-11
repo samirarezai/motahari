@@ -1,0 +1,70 @@
+@import "../../../scss/variable";
+
+.workbook-modal-container {
+  height: 100%;
+
+  .workbook-top {
+    background-color: $color-base-site;
+    padding: 2em 1em;
+    width: 100%;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    color: white;
+  }
+
+  .quiz-result-bottom-container {
+    margin-top: 2em;
+    padding-bottom: 2em;
+  }
+
+  .result-number-n {
+    padding-left: 1em;
+  }
+
+  .result-number-s {
+    padding-left: 1em;
+    color: $color-base-site;
+  }
+
+  .result-number-w {
+    padding-left: 1em;
+    color: $color-red;
+  }
+
+  .success-text {
+    color: $color-base-site;
+  }
+
+  .failed-text {
+    color: $color-red;
+  }
+
+  .simple-green-title {
+    color: $title-text-color;
+  }
+}
+
+
+.top-divider {
+  width: 100%;
+  height: 1px;
+  background-color: $color-text-dark;
+}
+
+.close-position {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: white;
+  font-size: 12px;
+
+  .icon-close:before{
+    color: white;
+  }
+}
+
+.bottom-divider {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px $color-text-dark dashed;
+}

@@ -1,0 +1,62 @@
+<div class="workbook-modal-container">
+  <a (click)="onClose()" class="close-position">
+    <div class="icon-close"></div>
+  </a>
+  <div class="text-center workbook-top">
+    <span>کارنامه دوره</span>
+  </div>
+  <div class="col-md-12 quiz-result-bottom-container" *ngIf="courseResult!==undefined">
+    <div class="row">
+      <div class="col-md-6">
+        <span>نام دوره</span>
+      </div>
+      <div class="col-md-2">
+        <span>نمره خام</span>
+      </div>
+      <div class="col-md-2">
+        <span>ضریب</span>
+      </div>
+      <div class="col-md-2">
+        <span>نمره از کل</span>
+      </div>
+    </div>
+    <div class="col-md-12 top-divider my-1"></div>
+    <div class="row mt-2"  *ngFor="let item of courseResult.workBooks">
+      <div class="col-md-6">
+        <span class="simple-green-title" [textContent]="item.name"></span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span [textContent]="item.point"></span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span [textContent]="item.coefficient"></span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="simple-green-title" [textContent]="item.finalPoint"></span>
+      </div>
+    </div>
+    <div class="col-md-12 text-center mt-3 simple-green-title">
+      <span>امتیاز شما از این دوره :</span>
+      <span class="mr-1" [textContent]="courseResult.rate"></span>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-12 bottom-divider"></div>
+  </div>
+  <div class="col-md-12 mt-2" *ngIf="courseResult!==undefined">
+    <div class="row">
+      <div class="col-md-6">
+        <span class="simple-green-title" [textContent]="courseResult.name"></span>
+      </div>
+      <div class="col-md-2 text-center">
+        <!--<span [textContent]="courseResult.point"></span>-->
+      </div>
+      <div class="col-md-2 text-center">
+        <span [textContent]="courseResult.coefficient"></span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="simple-green-title" [textContent]="courseResult.finalPoint"></span>
+      </div>
+    </div>
+  </div>
+</div>

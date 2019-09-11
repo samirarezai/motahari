@@ -1,0 +1,52 @@
+<div class="quiz-modal-container">
+  <div class="text-center quiz-result-top">
+    <span>نتیجه آزمون</span>
+  </div>
+  <div class="col-md-12 quiz-result-bottom-container">
+    <div class="row">
+      <div class="col">
+        <span>تعداد کل سوالات :</span>
+      </div>
+      <div class="col text-center">
+        <span class="result-number-n" [textContent]="quizCount"></span> <span>عدد</span>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <span>تعداد پاسخ صحیح :</span>
+      </div>
+      <div class="col text-center">
+        <span class="result-number-s" [textContent]="rightPoint"></span> <span>عدد</span>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <span>تعداد پاسخ غلط :</span>
+      </div>
+      <div class="col text-center">
+        <span class="result-number-w" [textContent]="wrongPoint"></span> <span>عدد</span>
+      </div>
+    </div>
+    <div class="col-md-12 text-center mt-3">
+      <span>امتیاز کلی شما : </span>
+    </div>
+  </div>
+  <div class="col-md-12 text-center mt-3">
+    <span *ngIf="quizResult==='PASS'"> تبریک شما موفق شدید به مرحله بعدی راه پیدا کنید</span>
+    <span *ngIf="quizResult==='FAIL'">متاسفانه شما نتوانستید نمره کافی را کسب کنید</span>
+  </div>
+  <div class="col-md-12 text-center mt-3">
+    <a routerLink="/match-step/{{courseId}}" *ngIf="quizResult==='PASS' && isCourse===false">
+      <button class="button-simple-green" (click)="close()">رفتن به مرحله بعد</button>
+    </a>
+    <a routerLink="/course-step/{{courseId}}" *ngIf="quizResult==='PASS' && isCourse===true">
+      <button class="button-simple-green" (click)="close()">رفتن به مرحله بعد</button>
+    </a>
+    <a routerLink="/match-step/{{courseId}}" *ngIf="quizResult==='FAIL' && isCourse===false">
+      <button class="button-simple-green" (click)="close()">بازگشت</button>
+    </a>
+    <a routerLink="/course-step/{{courseId}}" *ngIf="quizResult==='FAIL' && isCourse===true">
+      <button class="button-simple-green" (click)="close()">بازگشت</button>
+    </a>
+  </div>
+</div>

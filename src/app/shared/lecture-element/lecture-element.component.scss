@@ -1,0 +1,13 @@
+@import "../../../scss/variable";
+
+.lecture-el-container{
+  padding: 1em;
+  background-color: white;
+  color: $color-text-dark;
+  border-radius: 1em;
+}
+
+.text-description-color{
+  color: $color-text-description;
+  padding-right: 2.5em;
+}

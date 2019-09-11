@@ -1,0 +1,87 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container-fluid my-pages-top"></div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="title-with-underline">
+      <span>حساب کاربری</span>
+    </div>
+  </div>
+  <div class="col-md-12 mt-4 profile-input-container" *ngIf="userInfo!==undefined">
+    <div class="py-1 mt-3 col-md-4">
+      <span class="title">نام</span>
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="public-box-shadow" [(ngModel)]="userInfo.firstName"/>
+    </div>
+    <div class="py-1 mt-3 col-md-4">
+      <span class="title">نام خانوادگی</span>
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="public-box-shadow" [(ngModel)]="userInfo.lastName"/>
+    </div>
+    <div class="py-1 mt-3 col-md-4">
+      <span class="title">جنسیت :‌ </span>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="customRadioInline1" [checked]="userInfo.gender==='MALE'"
+               (change)="onChangeGender(true)"
+               class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline1">آقا</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" name="customRadioInline1" [checked]="userInfo.gender==='FEMALE'"
+               (change)="onChangeGender(false)"
+               class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline2">خانم</label>
+      </div>
+    </div>
+    <div class="py-1 mt-3 col-md-4">
+      <span class="title">نام پدر</span>
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="public-box-shadow" [(ngModel)]="userInfo.fatherName"/>
+    </div>
+    <div class="py-1 mt-3 col-md-4">
+      <span class="title">کد ملی</span>
+    </div>
+    <div class="col-md-3">
+      <input class="public-box-shadow" type="text" [(ngModel)]="userInfo.nationalCode"/>
+    </div>
+    <div class="col-md-3 mt-4">
+      <button class="blue-button" (click)="updateInfo()">ذخیره</button>
+    </div>
+  </div>
+  <div class="organization-container">
+    <div class="col-md-12 pr-0 p-2">
+      <div class="py-1 mt-3 col-md-12 pr-0">
+        <span class="main-title">کداختصاصی</span>
+        <span> ( *</span><span>در صورت داشتن کد اختصاصی واحد محل تحصیل یا خدمت، آن را وارد کنید.</span><span> ) </span>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <input type="text"  (keyup.enter)="callSubOrg()" class="input-class public-box-shadow" [(ngModel)]="organizationCode"/>
+        </div>
+        <div class="col-md-2">
+          <button class="blue-button h-100" (click)="callSubOrg()">ثبت</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="py-1 mt-3 col-md-12 pr-0">
+        <span class="main-title">سوابق</span>
+      </div>
+      <div class="col-md-12">
+        <div class="row mt-2" *ngFor="let myItem of myOrganizationList">
+          <div class="col-md-4" style="display: flex; align-items: center;">
+            <span [textContent]="myItem.name" ></span>:
+            <span [textContent]="myItem.code" class="pr-2"></span>
+          </div>
+          <div class="col-md-2">
+            <a (click)="callRemoveOrg(myItem)">
+              <button class="remove-button">حذف</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

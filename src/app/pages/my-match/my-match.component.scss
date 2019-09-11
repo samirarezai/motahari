@@ -1,0 +1,56 @@
+@import "../../../scss/variable";
+
+.course-category-container {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 0.3em;
+}
+
+.other-book-box {
+  padding: 0.5em;
+  background-color: white;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  margin-left: 1em;
+  margin-right: 1.30em;
+  font-size: $font-size-small;
+}
+
+.archive-subtitle {
+  color: gray;
+  font-size: $font-size-small;
+}
+
+.title-course{
+  font-size: $font-size-large;
+  font-weight: bold;
+}
+
+.course-description{
+  font-size: 14px;
+}
+.other-match-image-container {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+
+  img {
+    height: auto;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}

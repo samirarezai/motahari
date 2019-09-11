@@ -1,0 +1,107 @@
+@import "../../../scss/variable";
+
+.books-container {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+}
+
+.book-title-position {
+  position: absolute;
+  top: 40%;
+}
+
+
+.book-box {
+  text-align: center;
+
+  img {
+    max-height: 220px;
+  }
+
+  a {
+    color: $color-text-dark;
+  }
+
+  div {
+    height: 100%;
+  }
+
+  span {
+    font-size: $font-size-small;
+  }
+}
+
+.all-word-underline{
+  position: absolute;
+  bottom: 7px;
+  height: 5px;
+  width: 27px;
+  right: 38px;
+  border-radius: 20px;
+}
+.my-word-underline{
+  position: absolute;
+  bottom: 7px;
+  height: 5px;
+  width: 77px;
+  right: 9%;
+  border-radius: 20px;
+}
+
+
+.top-search {
+  position: relative;
+
+  .row-container {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    padding-top: 50px;
+    padding-right: 20px;
+    padding-left: 40px;
+  }
+
+  input {
+    width: 90%;
+    right: 0;
+    border: 0;
+  }
+
+  .single-search-input {
+    border: none;
+    position: absolute;
+    left: 1%;
+    width: 100%;
+    top: 0;
+    background-color: white;
+    border-radius: 6px;
+
+    input {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .search-side {
+      position: absolute;
+      display: inline-flex;
+      width: 10%;
+      height: 100%;
+
+      span {
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: $color-base-site;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

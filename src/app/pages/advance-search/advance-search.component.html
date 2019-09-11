@@ -1,0 +1,234 @@
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="container search-top-main">
+    <span class="title-with-underline-white">جستجوی پیشرفته</span>
+    <div class="col-md-12 pl-0">
+      <div class="row mt-4 w-100 public-box-shadow public-border">
+        <div class="col-md-6 py-2 pl-0 single-search-input right-box">
+          <input placeholder="عبارت جستجو..." class="single-search-input"
+                 (keyup.enter)="onSearchClick()"
+                 [(ngModel)]="searchText"/>
+        </div>
+        <div class="col-md-5 p-0 single-search-input middle-box">
+          <div class="col-md-12 h-100">
+            <div class="row h-100">
+              <div class="col-md-5 pl-0 my-auto">
+                <span class="mr-2 d-table-cell single-box">محدوده جستجو: </span>
+              </div>
+              <div class="col-md-7 my-auto pr-0">
+                <ngx-select-dropdown [config]="config" [options]="bookList"
+                                     (change)="selectionChanged($event)"
+                                     [(ngModel)]="selectData" [multiple]="true"></ngx-select-dropdown>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 pr-0 single-search-input left-box" (click)="onSearchClick()">
+          <span class="icon-magnifying-glass"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-4">
+      <div class="row">
+        <div class="col-md-6 my-auto pr-0 other-filter">
+          <div class="d-table">
+            <label class="container-custom-checkbox">
+              <input type="checkbox" checked="checked" [(ngModel)]="isSameWord">
+              <span class="checkmark"></span>
+            </label>
+            <span class="mr-2">جستجو عین کلمه یا عبارت</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="col-md-12">
+    <div class="row" style="position: relative">
+      <div class="col-md-12">
+        <a (click)="onTabClick(0)" class="mr-4 pr-3">
+          <span [ngClass]="{'tab-title-select': tabIndex==0}">متن کتاب‌ها</span>
+        </a>
+        <a (click)="onTabClick(1)" class="mr-4 pr-3">
+          <span [ngClass]="{'tab-title-select': tabIndex==1}">فهرست کتاب‌ها</span>
+        </a>
+        <a (click)="onTabClick(2)" class="mr-4">
+          <span [ngClass]="{'tab-title-select': tabIndex==2}">عنوان کتاب‌ها</span>
+        </a>
+      </div>
+      <div class="divider-green-small page-word-underline" *ngIf="tabIndex===0"></div>
+      <div class="divider-green-small index-word-underline" *ngIf="tabIndex===1"></div>
+      <div class="divider-green-small title-word-underline" *ngIf="tabIndex===2"></div>
+      <div class="col-md-12 pr-0 divider-green-horizontal-main">
+        <span class="icon-right-design "></span>
+        <div class="divider-green-horizontal-container">
+          <div class="divider-green-horizontal"></div>
+        </div>
+        <span class="icon-left-design"></span>
+      </div>
+    </div>
+    <div *ngIf="tabIndex===0 " class="col-md-12 mt-5"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollTextTab(true)">
+      <app-loading [isMiddle]="true" *ngIf="isPageLoading===true"></app-loading>
+      <div>
+        <div class="row" *ngIf="initTextSearchResultList!==undefined">
+          <div class="result-count">{{pageSearchCount}} نتیجه</div>
+        </div>
+        <div class="public-border public-box-shadow book-text-main" *ngIf="initTextSearchResultList!==undefined">
+          <div class="row">
+            <div class="col-md-12 text-center"
+                 *ngIf="initTextSearchResultList!==undefined && initTextSearchResultList.length===0 && textSearchResultList.length===0">
+              <span>نتیجه ای یافت نشد</span>
+            </div>
+            <div class="col-md-12 book-text-container" *ngFor="let item of textSearchResultList">
+              <div class="row">
+                <div class="col-md-2">
+                  <a class="green-title" routerLink="/book/{{item.book.id}}">
+                    <img *ngIf="item.book.thumbnail!==null && item.book.thumbnail!==undefined"
+                         [src]="item.book.thumbnail.url"
+                         class="thumbnail img-fluid image-border"/>
+                  </a>
+                </div>
+                <div class="col-md-10 p-0" style="margin-right: -2em">
+                  <div class="row py-3 px-2">
+                    <div class="col-md-7 my-auto">
+                      <div>
+                        <span [textContent]="item.book.title" class="book-title-text"></span>
+                        <div class="d-inline-block book-page-number-index">
+                          <span class="mr-2">(صفحه</span><span [textContent]="item.bookPage.pageNumber"></span>)
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a [href]="item.book.sellLink" target="_blank">
+                            <button type="button" class="blue-button-border">خرید نسخه چاپی</button>
+                          </a>
+                        </div>
+                        <div class="col-md-6">
+                          <a routerLink="/book-page/{{item.book.id}}/{{item.book.title}}"
+                             [queryParams]="{'page':item.bookPage.pageNumber}">
+                            <button type="button" class="blue-button-border">مطالعه کتاب</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="py-3 px-2" style="text-align: justify">
+                    <span [innerHTML]="item.bookPage.page | highlight : searchText: isSameWord "></span>
+                  </div>
+                  <div class="py-3 px-2" style="text-align: justify; border-top:1px #d0d0d0 solid"
+                       *ngIf="item.bookPage.foot!==null">
+                    <span [innerHTML]="item.bookPage.foot | highlight : searchText : isSameWord "></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="tabIndex===1" class="col-md-12 mt-5">
+      <app-loading [isMiddle]="true" *ngIf="isIndexLoading===true"></app-loading>
+      <div *ngIf="isSearch===true && isIndexLoading===false">
+        <div class="row">
+          <div class="result-count">{{indexSearchCount}} نتیجه</div>
+        </div>
+        <div class="public-border public-box-shadow" style="background-color: white;padding: 2em">
+          <div class="row">
+            <div class="col-md-12 text-center px-0" *ngIf="isSearch===true && indexSearchResultList.length===0">
+              <span>نتیجه ای یافت نشد</span>
+            </div>
+            <div class="col-md-6" *ngFor="let book of indexSearchResultList">
+              <div class="row other-book-box mt-3">
+                <div class="col-md-3 thumbnail-container">
+                  <a class="green-title" routerLink="/book/{{book.book.id}}">
+                    <img *ngIf="book.book.thumbnail!==null && book.book.thumbnail!==undefined"
+                         [src]="book.book.thumbnail.url"
+                         class="thumbnail image-border" style="box-shadow:none"/>
+                  </a>
+                </div>
+                <div class="col-md-9 py-2">
+                  <div class=" mt-1">
+                    <a class="green-title" routerLink="/book/{{book.book.id}}">
+                      <span [textContent]="book.book.title"></span>
+                      <div class="d-inline-block book-page-number-index">
+                        <span class="mr-2">(صفحه</span><span [textContent]="book.bookIndex.page"></span>)
+                      </div>
+                    </a>
+                  </div>
+                  <div class="my-2 book-page-number-container">
+                    <span class="pr-1" [textContent]="book.bookIndex.title"></span>
+                  </div>
+                  <div class="row other-book-button">
+                    <div class="col-md-6 pl-0">
+                      <a routerLink="/book-page/{{book.book.id}}/{{book.book.title}}"
+                         [queryParams]="{'page':book.bookIndex.page}">
+                        <button type="button" class="blue-button-border">مطالعه کتاب</button>
+                      </a>
+                    </div>
+                    <div class="col-md-6 pl-0">
+                      <a [href]="book.book.sellLink" target="_blank">
+                        <button type="button" class="blue-button-border">خرید نسخه چاپی</button>
+                      </a>
+                      <span class="icon-headset"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="tabIndex===2" class="col-md-12 mt-5">
+      <app-loading [isMiddle]="true" *ngIf="isTitleLoading===true"></app-loading>
+      <div *ngIf="isSearch===true && isTitleLoading===false">
+        <div class="row">
+          <div class="result-count">{{titleSearchCount}} نتیجه</div>
+        </div>
+        <div class="public-border public-box-shadow" style="background-color: white;padding: 2em">
+          <div class="row">
+            <div class="col-md-12 text-center px-0" *ngIf="titleSearchResultLis.length===0">
+              <span>نتیجه ای یافت نشد</span>
+            </div>
+            <div class="col-md-4 col-lg-3 book-title-box-container" *ngFor="let item of titleSearchResultLis">
+              <div class="box-container">
+                <div class="image-container">
+                  <a class="green-title" routerLink="/book/{{item.book.id}}">
+                    <img *ngIf="item.book.thumbnail!==null && item.book.thumbnail!==undefined"
+                         [src]="item.book.thumbnail.url"
+                         class="thumbnail image-border"/>
+                  </a>
+                </div>
+                <div class="col-md-12 text-center my-2 mx-1">
+                  <span [textContent]="item.book.title"></span>
+                </div>
+                <div class="row button-container">
+                  <div style="position: absolute; bottom: 12px; left: 0;right: 0;">
+                    <div class="col-md-12">
+                      <a routerLink="/book-page/{{item.book.id}}/{{item.book.title}}"
+                         [queryParams]="{'page':item.book.startPage}">
+                        <button type="button" class="blue-button-border">مطالعه کتاب</button>
+                      </a>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                      <a [href]="item.book.sellLink" target="_blank">
+                        <button type="button" class="blue-button-border">خرید نسخه چاپی</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

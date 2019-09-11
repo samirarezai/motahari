@@ -1,0 +1,92 @@
+<app-loading *ngIf="isLoading===true"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="true"></app-top-background>
+  <div class="books-container">
+    <div class="container course-main" *ngIf="questionList!==undefined">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="book-title">مسابقه کتابخوانی آزادی معنوی</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-4" *ngIf="questionList!==undefined">
+  <div class="col-md-12">
+    <div class="row my-2">
+      <div class="col-md-12">
+        <div class="row py-1">
+          <div class="col-md-6 gray-main-title">زمان باقی‌مانده تا پایان آزمون :</div>
+          <div class="col-md-6 text-left gray-main-title">
+            <countdown [config]="{leftTime: quizDurationTime * 60}"
+                       (finished)="onFinishTime()">$!m!:$!s!
+            </countdown>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="progress" style="direction: ltr">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{'width':this.width+'%'}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="p-3 quiz-right-box public-border">
+          <div class="text-center mt-3">
+            تعداد سوالات پاسخ داده شده
+          </div>
+          <div class="text-center mt-3">
+            <span [textContent]="answerCount"></span> <span>/</span> <span [textContent]="questionCount"></span>
+          </div>
+          <div class="text-center mt-5">
+            زمان پاسخ گویی به سوالات
+          </div>
+          <div class="text-center mt-3">
+            <span [textContent]="quiz.durationTime"></span>
+            <span class="px-2">دقیقه</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="col-md-12 quiz-container px-3 public-border">
+          <div class="col-md-12 quiz-text-container" *ngFor="let question of questionList;index as j">
+            <div class="col-md-12">
+              <span [textContent]="j+1"></span>)
+              <span class="pr-2" [innerText]="question.text"></span>
+            </div>
+            <div class="col-md-12">
+              <div class="row mx-3">
+                <div class="col-md-6 p-2" *ngFor="let option of question.options;index as i">
+                  <a>
+                    <div class="quiz-option-container"
+                         [ngClass]="{'quiz-option-selected-bg': option.isSelect===true}"
+                         (click)="selectOption(option,question.options)">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="quiz-option-number-container">
+                            <span class="quiz-option-number" [textContent]="i+1"></span>
+                          </div>
+                        </div>
+                        <div class="col-md-10 pl-1 pr-2">
+                          <span [textContent]="option.text"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <div class="col-md-4 m-auto">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 40%"></div>
+            <button class="blue-button-border" (click)="quizResult()"> تایید آزمون</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

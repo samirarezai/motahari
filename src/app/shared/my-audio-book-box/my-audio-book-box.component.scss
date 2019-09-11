@@ -1,0 +1,69 @@
+@import "../../../scss/variable";
+
+.other-book-box {
+  height: 170px;
+  padding: 0.7em;
+  background-color: white;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+  margin-left: 1em;
+  margin-right: 1.30em;
+  font-size: $font-size-small;
+  border: 1px $quiz-box-border solid;
+}
+
+.other-book-button {
+  bottom: 1em;
+  position: absolute;
+  width: 100%;
+}
+
+.thumbnail-container {
+  margin-right: -3em;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+
+  .thumbnail {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.book-page-number-container {
+  display: table;
+  color: $color-text-description;
+
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.publication-date{
+  display: table;
+  color: $color-text-description;
+
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.icon-headset-position{
+  font-size: 3em;
+  z-index: 1;
+  position: absolute;
+  left: 2px;
+  top: 0;
+}

@@ -1,0 +1,60 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container-fluid my-pages-top"></div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="title-with-underline">
+      <span>گواهینامه‌های من</span>
+    </div>
+  </div>
+  <div class="mt-4">
+    <div class="col-md-12 ">
+      <div class="row justify-content-center" *ngIf="certificateList.length===0">
+        <span>گواهینامه وجود ندارد</span>
+      </div>
+      <div class="row" *ngIf="certificateList.length!==0">
+        <div class="col-md-6 mt-5"
+             *ngFor="let item of certificateList">
+          <div class="col-md-12 public-border h-100 public-box-shadow rate-box-container">
+            <div class="row">
+              <div class="col-md-1">
+                <div class="icon-position">
+                  <div class="icon-container">
+                    <span class="icon-certificate"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-11 p-3">
+                <div class="row">
+                  <div class="col-md-8">
+                    <a routerLink="/course/{{item.course.id}}">
+                      <span class="green-title" [textContent]="item.course.title"></span>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a (click)="getCertificate(item)" target="_blank" *ngIf="item.bought===true">
+                      <button class="blue-button">دریافت گواهینامه</button>
+                    </a>
+                    <a (click)="showBuyModal(item.course)" *ngIf="item.bought===false">
+                      <button class="blue-button">خرید گواهینامه</button>
+                    </a>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-6 date-details">
+                    <span class="mr-1" [textContent]="item.time |timeToDate"></span>
+                    <span class="icon-date"></span>
+                  </div>
+                  <div class="col-md-6 price-details" *ngIf="item.bought===false">
+                    <span class="icon-funds ml-1"></span>
+                    <span [textContent]="item.course.price"></span>
+                    <span class="mr-1 pl-2">تومان</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

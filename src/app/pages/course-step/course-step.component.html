@@ -1,0 +1,222 @@
+<app-loading *ngIf="stepList===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="books-container">
+    <div class="container course-main" *ngIf="stepList!==undefined">
+      <div class="row">
+        <div class="col-md-6">
+          <img [src]="course.multimedia.url" class="img-fluid image-border public-box-shadow"
+               style="width: 100%; height: 300px;"/>
+        </div>
+        <div class="col-md-6 pt-3">
+          <div class="book-title" [textContent]="course.title"></div>
+          <div class="row mt-2">
+            <div class="col-md-8 text-right">
+              <div class="sample-title my-3">
+                <span>نام استاد‌ : </span>
+                <span class="mr-1" [textContent]="course.teacher"></span>
+              </div>
+              <div class="sample-title my-3">
+                <span>زمان دوره :</span>
+                <span class="mr-1" [textContent]="course.maxFeasibleDays"></span><span>روز</span>
+              </div>
+            </div>
+            <div class="col-md-4 m-auto">
+              <a (click)="buyCourse()"
+                 *ngIf="course.price!==0 && course.sectionBuy===false && course.paymentType==='SECTION'">
+                <button class="button-top">خرید دوره</button>
+              </a>
+              <button class="button-top" *ngIf="course.price===0">رایگان</button>
+              <button class="button-top"
+                      *ngIf="course.price!==0 && course.paymentType==='SECTION' &&  course.sectionBuy===true">خریداری
+                شده
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top: 12em" *ngIf="stepList!==undefined">
+  <div class="mt-3 col-md-12">
+    <div class="row">
+      <span class="green-title">فهرست دروس</span>
+    </div>
+  </div>
+  <div class="col-md-12 py-0 mt-4 px-0 step-list-container public-border public-box-shadow">
+    <div *ngFor="let step of stepList" class="step-row-container">
+      <div class="row py-4 step-row">
+        <a class="col-md-8" (click)="openStepDetail(step)">
+          <span class="dot" *ngIf="step.allowed===true"></span>
+          <span class="dot-gray" *ngIf="step.allowed===false"></span>
+          <span class="step-row-title" [textContent]="step.title"
+                [ngClass]="{'disable-text':step.allowed===false}"></span> :
+          <span [textContent]="step.description" class="mr-2 step-row-title"
+                [ngClass]="{'disable-text':step.allowed===false}"></span>
+          <span
+            *ngIf="step.allowed===true"
+            [ngClass]="{'icon-down-arrow':step.isOpen==false,'icon-up-arrow':step.isOpen==true,'disable-text':step.allowed===false}"
+            style=" font-size: 10px; padding-right: 10px; display: inline-block"></span>
+          <!-- <div>
+             <span>تاریخ فعال شدن آزمون از </span>
+             <span></span>
+           </div>-->
+        </a>
+        <div class="col-md-2 mr-auto"
+             *ngIf="step.description!==null && step.description!==undefined && step.description!==''">
+          <button class="green-info-button"
+                  (click)="openDescription(step)"
+                  [ngClass]="step.allowed===false ? 'green-info-button-disable' :''"
+          >توضیحات
+          </button>
+        </div>
+        <div class="col-md-2 mr-auto" *ngIf="step.allowed===true && step.quiz!==null && step.passed===false">
+          <a class="w-100" (click)="goToQuiz(step)">
+            <button
+              [ngClass]="step.allowed===true && step.quiz!==null ? 'button-match-step' : 'button-match-step-disable' "
+              class="w-100" *ngIf="step.passed===false">شرکت در آزمون
+            </button>
+          </a>
+          <div class="w-100" style="display: inline-block" *ngIf="step.allowed===false">
+            <button [ngClass]="step.allowed===true ? 'button-match-step' : 'button-match-step-disable' "
+                    class="w-100" *ngIf="step.passed===false">شرکت در آزمون
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 pr-4 py-2 green-title" style="font-size: 14px;margin-top: -24px;" *ngIf="step.quiz!==null && step.quiz.startTime!==0 && step.quiz.endTime!==0">
+        <span>تاریخ شروع آزمون : </span>
+        <span class="pr-1" [textContent]="step.quiz.startTime | timeToHour"></span>
+        <span class="pr-4">تاریخ پایان آزمون:</span>
+        <span class="pr-1" [textContent]="step.quiz.endTime | timeToHour"></span>
+      </div>
+      <div class="row mx-2 row-toggle" [ngClass]="{'open-row-toggle': step.isOpen==true}">
+        <div class="mx-4 mb-2" style="width: 100%">
+          <div class="col-md-12 step-details">
+            <div class="row">
+              <div class="col-md-8 step-multimedia-container d-flex">
+                <div class="triangle-left"></div>
+                <span>فایل‌های ضمیمه‌ : </span>
+                <span class="pr-1" [textContent]="step.fileSize"></span>
+              </div>
+              <div class="col-md-4 text-left">
+                <div class="row px-3">
+                  <div class="col">
+                    <div class="triangle-left"></div>
+                    <span>ضریب درس : </span>
+                    <span *ngIf="step.quiz!==null" [textContent]="step.quiz.coefficient"></span>
+                    <span *ngIf="step.quiz===null">0</span>
+                  </div>
+                  <div class="col">
+                    <div class="triangle-left"></div>
+                    <span>نمره درس : </span>
+                    <span *ngIf="step.quizPoint!==null && step.quizPoint!==0"
+                          [textContent]="step.quizPoint"></span>
+                    <span *ngIf="step.quizPoint===null">0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6"
+                 *ngIf="(step.text!==undefined && step.text!==null && step.text!=='')||(step.book!==null)">
+              <div>
+                <div class="row mt-1 py-2">
+                  <div class="col-md-6 h-100 my-auto d-flex">
+                    <div class="h-100 multimedia-number-container flex-column my-auto">
+                      <div class="circle-shape ">
+                        <span class="index-number">1</span>
+                      </div>
+                    </div>
+                    <span class="flex-column pr-2">محتوای آموزشی متنی</span>
+                  </div>
+                  <div class="col-md-4 pr-0">
+                    <a *ngIf="step.text!==undefined && step.text!==null && step.text!==''"
+                       routerLink="/course-info/{{step.id}}">
+                      <button (click)="callDoingService()" class="button-simple-green w-100 py-0">مطالعه کتاب</button>
+                    </a>
+                    <a *ngIf="step.book!==null" routerLink="/book-page/{{step.book.id}}/{{step.book.title}}"
+                       [queryParams]="{'page':'1'}">
+                      <button class="button-simple-green w-100 py-0">مطالعه کتاب</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6" *ngFor="let multimedia of step.multimedias; let i = index">
+              <div class="row mt-1 py-2">
+                <div class="col-md-6 h-100 my-auto d-flex">
+                  <div class="h-100 multimedia-number-container flex-column my-auto">
+                    <div class="circle-shape ">
+                          <span class="index-number"
+                                *ngIf="(step.text!==undefined && step.text!==null && step.text!=='')|| step.book!==null"
+                                [textContent]="i+2"></span>
+                      <span class="index-number"
+                            *ngIf="(step.text===null || step.text==='' ) && step.book===null"
+                            [textContent]="i+1"> </span>
+                    </div>
+                  </div>
+                  <span class="flex-column pr-2"
+                        *ngIf="(step.text!==null && step.text!==undefined && step.text!=='') || (step.book!==null) && i===1">محتوای آموزشی متنی</span>
+                  <span class="flex-column pr-2"
+                        *ngIf="(step.text!==null && step.text!==undefined && step.text!=='') || (step.book!==null) && i!==1"
+                        [textContent]="multimedia.description"></span>
+                  <span class="flex-column pr-2"
+                        *ngIf="(step.text===null || step.text==='') && step.book===null"
+                        [textContent]="multimedia.description"></span>
+                </div>
+                <div class="col-md-4 pr-0">
+                  <a [href]="multimedia.url" target="_blank">
+                    <button class="button-simple-green w-100 py-0" (click)="onDownload(multimedia.url)">دانلود
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-row-container">
+      <div class="row py-4 step-row">
+        <a class="col-md-10" (click)="openFinalCourse()">
+          <span class="dot" *ngIf="course!==null && course.quizAllowed===true"></span>
+          <span class="dot-gray" *ngIf="course!==null && course.quizAllowed===false"></span>
+          <span class="step-row-title" [ngClass]="{'disable-text':course.quizAllowed===false}">آزمون نهایی</span>
+        </a>
+        <div class="col-md-2 text-left">
+          <a class="w-100" (click)="goToCourseQuiz()" *ngIf="course.quizAllowed===true && course.quizAllowed!==null">
+            <button
+              [ngClass]="course.quizAllowed===true && course.quiz!==null ? 'button-match-step' : 'button-match-step-disable' "
+              class="w-100" *ngIf="course.passed===false">شرکت در آزمون
+            </button>
+          </a>
+          <div class="w-100" style="display: inline-block" *ngIf="course.quizAllowed===false">
+            <button class="w-100 button-match-step-disable" *ngIf="course.passed===false">شرکت در آزمون
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 pr-4 py-2 green-title" style="font-size: 14px;margin-top: -24px;" *ngIf="course.quiz!==null && course.quiz.startTime!==0 && course.quiz.endTime!==0">
+        <span>تاریخ شروع آزمون : </span>
+        <span class="pr-1" [textContent]="course.quiz.startTime | timeToHour"></span>
+        <span class="pr-4">تاریخ پایان آزمون:</span>
+        <span class="pr-1" [textContent]="course.quiz.endTime | timeToHour"></span>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="course.passed===true">
+    <div class="col-md-2">
+      <button class="blue-button-border" (click)="openWorkbook()">کارنامه</button>
+    </div>
+    <div class="col-md-2">
+      <a routerLink="/my-certificate">
+        <button class="blue-button-border">گواهینامه</button>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div style="position: relative">
+  <app-top-background [isSmall]="true"></app-top-background>
+  <div class="container">
+    <div class="book-title">
+      <span>عنوان : </span><span [textContent]="step.title"></span>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="col-md-12">
+    <app-book-reader [isShowIndex]="false" [text]="step.text" [step]="step"></app-book-reader>
+  </div>
+</div>
+

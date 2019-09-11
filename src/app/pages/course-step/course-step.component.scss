@@ -1,0 +1,119 @@
+@import "../../../scss/variable";
+
+.step-list-container {
+  background-color: white;
+  border-radius: $box-list-border-radius;
+
+  .step-row-container {
+    border-bottom: 1px $public-border-color solid;
+  }
+
+  .step-row {
+    //border-bottom: 1px $gray-bg-color solid;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    .step-row-title {
+
+    }
+  }
+
+  .sub-title {
+    //font-size: $font-size-medium;
+  }
+}
+
+.step-multimedia-container {
+  display: table;
+
+  .media-row {
+    display: table-cell;
+
+    .circle {
+      border: 1px #15b0a8 solid;
+      border-radius: 50%;
+      padding: 0.5em;
+      position: relative;
+      width: 40px;
+      height: 40px;
+
+      .download {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+      }
+    }
+
+    .title {
+      position: absolute;
+      right: 70px;
+      top: 0;
+    }
+
+    .size {
+      position: absolute;
+      right: 70px;
+      bottom: 0;
+      direction: ltr;
+    }
+  }
+}
+
+.button-match-step {
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: $border-radius;
+  background-color: $color-base-site;
+  padding: 0.5em 1.3em;
+}
+
+.button-match-step:hover {
+  background-color: $button-blue-color-hover;
+}
+
+.button-match-step:active {
+  background-color: $button-blue-color-active;
+}
+
+.button-match-step-disable {
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: $border-radius;
+  background-color: $button-disable-color;
+  padding: 0.5em 1.3em;
+}
+.multimedia-description {
+  font-size: $font-size-small;
+}
+
+.multimedia-number-container {
+  position: relative;
+  display: inline-block;
+
+  .index-number {
+    color: $color-base-site;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.quiz-button {
+  font-size: $font-size-small;
+}
+
+.step-details {
+  border: 1px $border-color solid;
+  padding: 0.5em;
+  border-radius: $border-radius;
+}

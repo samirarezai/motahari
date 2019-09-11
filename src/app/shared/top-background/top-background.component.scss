@@ -1,0 +1,25 @@
+@import "../../../scss/variable";
+
+.top-background {
+  background: linear-gradient(360deg, #004b7e, #0073b1, #0097E6);
+  position: relative;
+
+  div {
+    background-image: url("../../../assets/images/img_main_pattern_s.png");
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1
+  }
+}
+
+.small-top-bg-size {
+  height: 10em;
+}
+
+.normal-top-bg-size {
+  height: 15em;
+}

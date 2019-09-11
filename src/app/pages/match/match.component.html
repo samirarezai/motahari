@@ -1,0 +1,79 @@
+<app-loading *ngIf="matchList===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="books-container mb-3">
+    <div class="container course-main" *ngIf="liveMatch!==undefined">
+      <div class="row mb-3">
+        <div class="col-md-6 image-border public-box-shadow match-banner" >
+          <img *ngIf="liveMatch!==undefined" [src]="liveMatch.multimedia.url"/>
+        </div>
+        <div class="col-md-6">
+          <div class="golden-title">
+            <span class="icon-notification pl-1"></span>
+            <span> مسابقه در حال اجرا </span>
+          </div>
+          <div class="book-title mt-2" [textContent]="liveMatch.title"></div>
+          <div class="row mt-4">
+            <div class="col-md-6 text-right">
+              <div class="sample-title mt-1">
+                <span>تاریخ شروع‌:</span> <span class="mx-3" [textContent]="liveMatch.startTime | timeToDate"></span>
+              </div>
+              <div class="sample-title mt-1">
+                <span>تاریخ پایان:</span> <span class="mx-3"
+                                                [textContent]="liveMatch.expireTime | timeToDate"></span>
+              </div>
+            </div>
+            <div class="col-md-6" style="display: flex">
+              <div class="col-md-10 my-auto mr-auto">
+                <a (click)="goToMatch(liveMatch)">
+                  <button class="button-top">شرکت در مسابقه</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container margin-top-page-container">
+  <div class="col-md-12 mt-5 pt-5">
+    <div class="row align-items-center pl-2">
+      <span class="icon-archive" style="font-size: 2em;"></span>
+      <span class="title-with-underline mr-2">آرشیو مسابقات</span>
+    </div>
+  </div>
+  <div class="col-md-12 text-center mt-5"
+       *ngIf="expireMatchList===null || expireMatchList===undefined || expireMatchList.length===0">
+    <h4>آرشیو مسابقه خالی است</h4>
+  </div>
+  <div *ngIf="expireMatchList!==null && expireMatchList!==undefined && expireMatchList.length!==0" class="mt-5">
+    <div class="row my-4 justify-content-md-center" *ngFor="let match of expireMatchList">
+      <div class="col-md-8 col-offset-2 other-book-box public-box-shadow public-border">
+        <div class="row">
+          <div class="col-md-5" style="margin-right:-5em;">
+            <div class="other-match-image-container">
+              <div class="expire-label public-box-shadow">
+                <span>به پایان رسید</span>
+              </div>
+              <img *ngIf="match.multimedia.url!==null && match.multimedia.url!==undefined" [src]="match.multimedia.url"
+                   class="image-border"/>
+            </div>
+          </div>
+          <div class="col-md-7 py-4">
+            <div><span class="gray-main-title" [textContent]="match.title"></span></div>
+            <div class="row other-book-button mt-5">
+              <div class="col-md-12 archive-subtitle">
+                <span>تاریخ شروع‌:</span> <span class="mx-3" [textContent]="match.startTime | timeToDate"></span>
+              </div>
+              <div class="col-md-12 archive-subtitle mt-2">
+                <span>تاریخ پایان:</span> <span class="mx-3" [textContent]="match.expireTime | timeToDate"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

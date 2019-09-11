@@ -1,0 +1,66 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container top-search">
+  <div class="row row-container">
+    <div class="col-md-6">
+      <span class="title-with-underline-white">کتاب‌های صوتی</span>
+    </div>
+    <div class="col-md-6">
+      <div class="single-search-input right-box">
+        <input placeholder="عبارت جستجو..." class="p-2"
+               [(ngModel)]="searchText"/>
+        <div class="search-side">
+          <a (click)="onSearchClick()">
+            <span class="icon-magnifying-glass"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position: relative">
+  <app-top-background [isSmall]="true"></app-top-background>
+</div>
+<div class="container mt-4">
+  <div class="col-md-12 mainContainerScroll">
+    <div class="row" style="position: relative" *ngIf="isLoggedIn$ | async">
+      <div class="col-md-12">
+        <a (click)="onTabClick(false)">
+          <span class="mr-4">همه</span>
+        </a>
+        <a (click)="onTabClick(true)">
+          <span class="mr-4 pr-3">کتاب‌های صوتی من</span>
+        </a>
+      </div>
+      <div class="divider-green-small all-word-underline" *ngIf="isMyBookTab===false"></div>
+      <div class="divider-green-small my-word-underline" *ngIf="isMyBookTab===true"></div>
+      <div class="col-md-12 pr-0 divider-green-horizontal-main">
+        <span class="icon-right-design"></span>
+        <div class="divider-green-horizontal-container">
+          <div class="divider-green-horizontal"></div>
+        </div>
+        <span class="icon-left-design"></span>
+      </div>
+    </div>
+    <!--<div *ngIf="isMyBookTab===false" class="row"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         [infiniteScrollDisabled]="isMyBookTab"
+         (scrolled)="onScrollDown(false)">-->
+    <div class="row" *ngIf="isMyBookTab===false">
+      <div class="col-md-6" *ngFor="let book of finalBooks | localSearch : searchText">
+        <app-audio-book-box [book]="book"></app-audio-book-box>
+      </div>
+    </div>
+    <div *ngIf="isMyBookTab===true" class="row"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         [infiniteScrollDisabled]="!isMyBookTab"
+         (scrolled)="onScrollDownMyBook(true)">
+      <div class="col-md-6" *ngFor="let myBook of finalMyBooks">
+        <app-audio-book-box [book]="myBook"></app-audio-book-box>
+      </div>
+    </div>
+  </div>
+</div>

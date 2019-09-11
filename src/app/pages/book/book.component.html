@@ -1,0 +1,66 @@
+<app-loading *ngIf="book===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="container course-main" *ngIf="book!==undefined" style="top: 7em">
+    <div class="row">
+      <div class="col-md-2 p-0">
+        <div>
+          <img [src]="book.thumbnail.url" class="image-border img-fluid"/>
+        </div>
+        <div class="col-md-12 p-0">
+          <a routerLink="/audio-book/{{book.id}}" *ngIf="book.audio!==null" class="w-100">
+            <button class="blue-button buy-button">خرید کتاب صوتی</button>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6 pr-5 text-right">
+            <div class="book-title" [textContent]="book.title"></div>
+            <div class="sample-title mt-1">
+              <span>تعداد صفحات :‌</span> <span class="mx-3" [textContent]="book.pageCount"></span>
+            </div>
+            <div class="sample-title">
+              <span>نوبت چاپ :</span> <span class="mx-3" [textContent]="book.printOrder"></span>
+            </div>
+            <div class="sample-title">
+              <span>سال انتشار :</span> <span class="mx-3" [textContent]="book.printDate"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-6 mr-auto">
+              <a routerLink="/book-page/{{bookId}}/{{book.title}}" [queryParams]="{'page':book.startPage}">
+                <button class="button-top">مطالعه کتاب</button>
+              </a>
+            </div>
+            <div class="col-md-6 mr-auto my-4">
+              <a [href]="book.sellLink">
+                <button class="button-top">خرید نسخه چاپی</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" style="text-align: justify">
+            <span [innerText]="book.description"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div *ngIf="book!==undefined && book.lectures!==undefined && book.lectures.length!==0" class="row"
+       style="padding-top: 20em;">
+    <div class="col-md-12 p-0">
+      <span class="title-with-underline">سخنرانی‌های مرتبط</span>
+    </div>
+    <div class="col-md-12 mt-3">
+      <div class="row">
+        <div class="col-md-4 my-3 pr-0" *ngFor="let lecture of book.lectures">
+          <app-lecture-element [lecture]="lecture"></app-lecture-element>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

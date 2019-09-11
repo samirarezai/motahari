@@ -1,0 +1,49 @@
+@import "../../../scss/variable";
+
+.intro-container {
+
+  .intro-top {
+    background-color: $color-base-site;
+    color: white;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+
+  .intro-bottom {
+    background-color: white;
+  }
+}
+
+.share-container {
+  display: flex;
+  justify-content: center;
+
+  .share-icon-container {
+    background-color: $color-base-site;
+    position: relative;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 20px;
+    }
+  }
+}
+
+.input-code{
+  width: 100%;
+  padding: 5px;
+}
+
+.green-border {
+  border-radius: 6px;
+  border: 1px $color-base-site solid;
+}

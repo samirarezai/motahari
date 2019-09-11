@@ -1,0 +1,27 @@
+<div class="col-md-12 login-modal-container">
+  <div class="p-4 text-center">
+    <span class="mt-3"> با وارد کردن کد معرف می‌توانید به امتیاز‌های خود اضافه نمایید</span>
+    <div class="row mt-5">
+      <div class="col-md-8 m-auto">
+        <input [(ngModel)]="invitationCode"
+               class="form-control input-phone public-border">
+      </div>
+    </div>
+    <div class="col-md-12 pt-2 m-auto">
+      <span *ngIf="errorMessage!==null" [textContent]="errorMessage" style="color: red"></span>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-8 m-auto">
+        <button class="blue-button-border " (click)="submitCode()">ثبت کد معرف</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-5 m-auto">
+        <button (click)="cancel()"
+                style="cursor: pointer"
+                class="public-border public-box-shadow">بعدا وارد میکنم
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

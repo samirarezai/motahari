@@ -1,0 +1,42 @@
+<div class="row other-book-box mt-3">
+  <div class="col-md-3 thumbnail-container">
+    <a class="green-title" routerLink="/audio-book/{{book.id}}">
+        <span class="icon-headset icon-headset-position">
+        <span class="path1"></span>
+        <span class="path2"></span></span>
+      <img *ngIf="book.thumbnail!==null && book.thumbnail!==undefined" [src]="book.thumbnail.url"
+           class="thumbnail image-border" style="box-shadow:none"/>
+    </a>
+  </div>
+  <div class="col-md-9 py-2">
+    <div class=" mt-1">
+      <a class="green-title" routerLink="/audio-book/{{book.id}}">
+        <span [textContent]="book.title"></span>
+      </a>
+    </div>
+    <div class="my-1 book-page-number-container">
+      <span class="pr-2">گویندگان :</span>
+      <span class="pr-1" [textContent]="book.audio.announcer"></span>
+    </div>
+    <div class="pt-1 publication-date">
+      <span class="pr-2" *ngIf="book.audio.price!==0">قیمت : </span>
+      <span class="pr-2" *ngIf="book.audio.price===0">رایگان</span>
+      <span class="pr-1" *ngIf="book.audio.price!==0">{{book.audio.price}} تومان </span>
+    </div>
+    <div class="row other-book-button">
+      <div class="col-md-6 pl-0">
+        <a (click)="buyAudioBook()" target="_blank" *ngIf="book.audio.price!==0 && book.audio.buy===false">
+          <button type="button" class="blue-button-border">خرید فایل صوتی</button>
+        </a>
+        <a routerLink="/audio-book/{{book.id}}" *ngIf="book.audio.price===0 || book.audio.buy===true">
+          <button type="button" class="blue-button-border">جزئیات</button>
+        </a>
+      </div>
+      <div class="col-md-6 pl-0">
+        <a [href]="book.audio.cdLink" target="_blank">
+          <button type="button" class="blue-button-border">خرید لوح فشرده</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

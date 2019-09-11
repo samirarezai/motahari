@@ -1,0 +1,104 @@
+@import "../../../scss/variable";
+
+.book-title {
+  position: absolute;
+  top: 50%;
+}
+
+.book-page-mainText {
+  background-color: white;
+  padding: 1em;
+  text-align: justify;
+  width: 100%;
+}
+
+.book-page-setting {
+  border: 1px $box-border solid;
+  background-color: $setting-book-page-bg;
+
+  .text-setting {
+    background-color: white;
+
+    .text-setting-title {
+      background-color: $color-base-site;
+      color: white;
+    }
+  }
+
+  .setting-body {
+    color: $color-text-dark;
+    padding-top: 1em;
+    border-bottom: 1px $box-border solid;
+    font-size: $font-size-small;
+  }
+
+  .quiz-button {
+
+  }
+}
+
+.fontContainer {
+  padding: 20px;
+  position: relative;
+  border: 1px $box-border solid;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 5px 7px;
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.fontContainerSelect {
+  background-color: $color-base-site;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.fontContainerBorder{
+  border:1px $color-base-site solid;
+}
+
+.font-title {
+  display: block;
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+
+.font-box-select {
+  border: 1px $color-base-site solid;
+
+}
+
+.font-iranSans {
+  font-family: 'iransfm', sans-serif !important;
+}
+
+.font-bNazanin {
+  font-family: 'b-nazanin', sans-serif !important;
+}
+
+
+.font-arial {
+  font-family: 'Arial, Helvetica, sans-serif', sans-serif !important;
+}
+
+

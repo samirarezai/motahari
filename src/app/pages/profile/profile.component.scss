@@ -1,0 +1,50 @@
+@import "../../../scss/variable";
+
+.profile-input-container {
+
+  .title {
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    border: 1px $border-color solid;
+    border-radius: 5px;
+    padding: 0.6em;
+  }
+
+}
+
+.input-class {
+  width: 100%;
+  border: 1px $border-color solid;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+.remove-button {
+  cursor: pointer;
+  width: 100%;
+  color: white;
+  border: 0;
+  border-radius: $box-list-border-radius;
+  padding: 0.4em;
+  background-color: $button-red-color;
+  -webkit-box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.organization-container {
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: $quiz-bg;
+  border: 1px $border-color solid;
+  border-radius: $border-radius;
+
+  .main-title{
+    font-weight: bold;
+    font-size: $font-size-large;
+  }
+}
+

@@ -1,0 +1,60 @@
+<div class="container-fluid bg-light navbar-light d-flex position-relative" style="z-index: 3;">
+
+  <div class="nav-item my-auto" style="position: absolute;top: 32px;font-size: 20px;">
+    <a class="nav-link" *ngIf="isLoggedIn$ | async" (click)="openMenu()">
+      <span>☰</span>
+      <span>منو</span>
+    </a>
+  </div>
+  <nav class="navbar navbar-expand-lg   container" style="z-index: 3">
+    <a class="navbar-brand" style="padding: 0" >
+      <img src="assets/images/motahari_header.png" style="width: 80px;height: 80px"/>
+      <!--<img src="assets/images/motahari_text.png"/>-->
+    </a>
+
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav menu-item">
+        <li class="nav-item">
+          <a class="nav-link" href="http://portal.motahari.ir/">خانه</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="course-category">دوره‌ها</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="match">مسابقات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="book-list">کتاب‌‌ها</a>
+        </li>
+        <li class="nav-item">
+          <!--<a class="nav-link" routerLink="book/1">کتاب</a>-->
+          <a class="nav-link" routerLink="audio-book-list">کتاب‌های صوتی</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lectures">سخنرانی‌ها</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="advance-search">جستجوی پیشرفته</a>
+        </li>
+        <!--<li class="nav-item">
+          <a class="nav-link" href="#" *ngIf="isLoggedIn$ | async">پروفایل</a>
+        </li>-->
+
+        <li class="nav-item">
+          <a class="nav-link login-text" (click)="openModal('custom-modal-1')" *ngIf="!(isLoggedIn$ | async)">ورود/ثبت‌
+            نام</a>
+        </li>
+    <!--    <li class="nav-item">
+          <a class="nav-link" (click)="onLogout()" *ngIf="isLoggedIn$ | async">خروج</a>
+        </li>-->
+        <li class="mr-auto position-absolute" style="left:20px;">
+          <a class="green-title" href="https://motahari.ir/app">دانلود اپلیکیشن</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 mr-auto">
+        <!--<input class="form-control mr-sm-2" type="search" placeholder="جستجو" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>-->
+      </form>
+    </div>
+  </nav>
+</div>

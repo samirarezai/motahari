@@ -1,0 +1,58 @@
+@import "../../../scss/variable";
+
+.quiz-right-box {
+  background-color: $quiz-right-box-bg;
+  border: 1px $quiz-box-border solid;
+}
+
+.quiz-container {
+  background-color: $quiz-bg;
+  border: 1px $quiz-box-border solid;
+
+  .quiz-text-container {
+    border-bottom: 1px $quiz-box-border solid;
+    color: $quiz-text-color;
+    padding: 2em 1em;
+
+    .quiz-option-container {
+      background-color: white;
+      -webkit-box-shadow: 4px 7px 16px 1px rgba(163,163,163,0.34);
+      -moz-box-shadow: 4px 7px 16px 1px rgba(163,163,163,0.34);
+      box-shadow: 4px 7px 16px 1px rgba(163,163,163,0.34);
+      padding: 1em;
+      border-radius: 0.5em;
+      height: 100%;
+
+      .quiz-option-number-container {
+        background-color: $button-buy-color;
+        border-radius: 50%;
+        position: relative;
+        width: 2em;
+        height: 2em;
+
+        .quiz-option-number {
+          position: absolute;
+          top: 50%;
+          color: white;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .quiz-option-container:hover{
+      background-color: $quiz-option-hover;
+    }
+
+    .quiz-option-selected-bg{
+      background-color: $quiz-option-hover;
+    }
+    .quiz-option-default-bg{
+      background-color: white;
+    }
+  }
+}

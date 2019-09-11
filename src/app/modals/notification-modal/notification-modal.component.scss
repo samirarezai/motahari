@@ -1,0 +1,50 @@
+@import "../../../scss/variable";
+
+.notify-container {
+  font-size: $font-size-small;
+  height: 100%;
+  border-radius: $border-radius-modal;
+  padding: 2em;
+
+  .icon-container{
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    font-size: 3em;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+  .close-position{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  .text{
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+
+.success-border {
+  border: 2px #00c851 solid;
+}
+
+.failed-border {
+  border: 2px #ff4444 solid;
+}
+
+.info-border {
+  border: 2px #33b5e5 solid;
+}
+

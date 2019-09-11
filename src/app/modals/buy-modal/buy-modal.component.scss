@@ -1,0 +1,53 @@
+@import "../../../scss/variable";
+
+.buy-modal-container {
+  height: 100%;
+
+  .buy-top {
+    background-color: $color-base-site;
+    padding: 1em;
+    width: 100%;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    color: white;
+  }
+
+  .close-position {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: white;
+    font-size: 12px;
+
+    .icon-close:before {
+      color: white;
+    }
+  }
+
+  .buy-bottom-container {
+
+    .icon-about:before {
+      font-size: 18px;
+      color: $color-base-site;
+    }
+  }
+
+  .cancel-buy-button {
+    width: 100%;
+    border: 1px $button-red-color solid;
+    border-radius: 0.5em;
+    color: $button-red-color;
+    cursor: pointer;
+    padding: 0.4em;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .cancel-buy-button:hover {
+    color: $button-red-color;
+    background-color: $button-red-hover;
+  }
+}
+
+

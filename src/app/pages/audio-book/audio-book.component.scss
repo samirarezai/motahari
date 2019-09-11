@@ -1,0 +1,49 @@
+@import "../../../scss/variable";
+
+.audio-details-container {
+  background-color: white;
+
+  .row-container {
+    display: flex;
+    border-bottom: 1px $public-border-color solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .triangle-custom-container {
+      padding-top: 2px;
+
+      span {
+        padding: 0 0 0 3px;
+        margin: 0
+      }
+    }
+
+    .left-side {
+      text-align: left;
+      position: absolute;
+      padding-top: 2px;
+      left: 18px;
+    }
+  }
+}
+
+.audio-file-list-container {
+  background-color: white;
+
+  .audio-file-details-container {
+    display: flex;
+    align-items: center;
+
+    .audio-file-span {
+      padding-top: 10px;
+    }
+  }
+
+  .single-row {
+    border-bottom: 1px $public-border-color solid;
+  }
+}
+
+
+
+

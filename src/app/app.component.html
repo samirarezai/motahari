@@ -1,0 +1,29 @@
+<div class="container-fluid p-0" id="container">
+  <app-right-menu #rightMenu></app-right-menu>
+  <app-header id="header" (menuClick)="clickOnMenu()"></app-header>
+  <div id="body">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer id="footer"></app-footer>
+</div>
+<!--custom modal-->
+<div id="modal-container" class="d-none"></div>
+<div id="overlay" (click)="removeModal()" class="d-none"></div>
+<!--quiz result modal-->
+<div id="modal-container-result-quiz" class="d-none"></div>
+<div id="overlay-result-quiz" (click)="removeModal()" class="d-none"></div>
+<!--workBook modal-->
+<div id="modal-container-workbook" class="d-none"></div>
+<div id="overlay-workbook" (click)="removeWorkbookModal()" class="d-none"></div>
+<!--buy modal-->
+<div id="modal-container-buy" class="d-none"></div>
+<div id="overlay-buy" (click)="removeBuyModal()" class="d-none"></div>
+<!--step description-->
+<div id="modal-container-step-description" class="d-none public-box-shadow"></div>
+<div id="overlay-step-description" (click)="removeDescription()" class="d-none"></div>
+<!--invitation Code-->
+<div id="modal-container-invitation-code" class="d-none public-box-shadow"></div>
+<div id="overlay-step-invitation-code" (click)="removeInvitationCode()" class="d-none"></div>
+<!--notification-->
+<div id="notification-container" class="d-none"></div>
+

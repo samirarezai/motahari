@@ -1,0 +1,55 @@
+<div class="col-md-12 login-modal-container">
+  <div class="row">
+    <div class="col-md-6 right-side">
+      <div class="text-center my-5 col-md-12">
+        <span class="icon-phone px-3 color-green-base"></span>
+        <span [textContent]="message"></span>
+      </div>
+      <div class="col-md-8 verify-code">
+        <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+               minlength="1"
+               [(ngModel)]="code5" #inputE5>
+        <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+               minlength="1"
+               (ngModelChange)=checkCode4()
+               [(ngModel)]="code4" #inputE4>
+        <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+               minlength="1"
+               (ngModelChange)=checkCode3()
+               [(ngModel)]="code3" #inputE3>
+        <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+               minlength="1"
+               (ngModelChange)=checkCode2()
+               [(ngModel)]="code2" #inputE2>
+        <input class="form-control input-code" type="tel" pattern="09[0-9]{9}" maxlength="1"
+               minlength="1"
+               (ngModelChange)=checkCode1()
+               (keyup.enter)="verify()"
+               [(ngModel)]="code1" #inputEl>
+
+
+      </div>
+      <div class="text-center">
+        <span *ngIf="errorMessage!==null && errorMessage!==''" [textContent]="errorMessage" style="color: red"></span>
+      </div>
+      <div class="col-md-8 my-5 text-center send-button">
+        <button class="blue-button-border" (click)="verify()">تایید کد</button>
+      </div>
+    </div>
+    <div class="col-md-6 left-side">
+      <div style="  height: 80%;width: 100%;">
+        <div class="col-md-12 logo-holder">
+        </div>
+        <div src="assets/images/img_motahari_name.png" class="logo-image-holder"></div>
+      </div>
+      <div class="col-md-12" style="color:white;padding: 0;text-align: center">
+        <h1>بنیاد علمی و فرهنگی استاد شهید مرتضی مطهری</h1>
+      </div>
+      <div class="close-container">
+        <a (click)="close()">
+          <span class="icon-close"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-4" *ngIf="isShowIndex===true">
+      
+  </div>
+  <div [ngClass]="(isShowIndex===true)?'col-md-5':'col-md-8'" >
+    <div class="row">
+      <div class="mb-3 book-page-mainText" *ngIf="step!==undefined && step!==null">
+            <span class="pb-3" [innerHtml]="text"
+                  [ngClass]="{'font-arial': selectFont==1, 'font-bNazanin':selectFont==2,'font-iranSans':selectFont==3 }"
+                  [ngStyle]="{'line-height': initLineHeight,'font-size':initFontSizeStr}"></span>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="(isShowIndex===true)?'col-md-3':'col-md-4'">
+    <div class="book-page-setting p-2">
+      <div class="text-setting">
+        <div class="text-setting-title p-2">
+          <span></span><span class="pr-1">تنظیمات متن </span>
+        </div>
+        <div class="col-md-12 setting-body">
+          <div>اندازه فونت</div>
+          <div class="py-3">
+            <ng5-slider [(value)]="initFontSize" [options]="fontSizeOptions"
+                        (userChange)="onFontSizeChange()"></ng5-slider>
+          </div>
+        </div>
+        <div class="col-md-12 setting-body">
+          <div>فاصله بین خطوط</div>
+          <div class="py-3">
+            <ng5-slider [(value)]="initLineHeight"
+                        [options]="lineHeightOptions"></ng5-slider>
+          </div>
+        </div>
+        <div class="col-md-12 setting-body">
+          <div>نوع فونت</div>
+          <div style="display: flex;align-items: center;justify-content: center">
+            <a (click)="selectFont=1">
+              <div class="text-center fontContainer mt-3 pt-3 font-arial"
+                   [ngClass]="{'fontContainerBorder':selectFont===1}">
+                <div [ngClass]="{'fontContainerSelect':selectFont===1}">
+                  <span>آب</span>
+                </div>
+              </div>
+              <div class="text-center font-title font-arial">
+                آریال
+              </div>
+            </a>
+            <a (click)="selectFont=2">
+              <div class="text-center fontContainer mt-3 pt-3 font-bNazanin"
+                   [ngClass]="{'fontContainerBorder':selectFont===2}">
+                <div [ngClass]="{'fontContainerSelect':selectFont===2}">
+                  <span>آب</span>
+                </div>
+              </div>
+              <div class="text-center font-title font-bNazanin">
+                نازنین
+              </div>
+            </a>
+            <a (click)="selectFont=3">
+              <div class="text-center fontContainer mt-3 pt-3 font-iranSans"
+                   [ngClass]="{'fontContainerBorder':selectFont===3}">
+                <div [ngClass]="{'fontContainerSelect':selectFont===3}">
+                  <span>آب</span>
+                </div>
+              </div>
+              <div class="text-center font-title font-iranSans">
+                ایرانسنس
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--<div class="mt-5" *ngIf="step!==undefined && step!==null && step.quiz!==null && step.quiz!==undefined">
+        <a routerLink="/quiz/{{step.course.id}}/{{step.id}}/{{step.quiz.id}}">
+          <button class="green-button quiz-button" [disabled]="step.passed===true"
+                  [ngStyle]="{'cursor':step.passed === true ? 'not-allowed' : 'url' }"> آزمون دوره
+          </button>
+        </a>
+      </div>-->
+    </div>
+  </div>
+</div>

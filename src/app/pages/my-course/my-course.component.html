@@ -1,0 +1,46 @@
+<app-loading *ngIf="showLoading===true"></app-loading>
+<div class="container-fluid my-pages-top"></div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="title-with-underline">
+      <span>دوره‌های آموزشی من</span>
+    </div>
+  </div>
+  <div class="col-md-12 text-center">
+    <div class="row px-3 justify-content-center">
+      <div class="col-md-8 col-offset-2" *ngFor="let myCourse of myCourseList">
+        <div class="other-book-box mt-4">
+          <div class="row">
+            <div class="col-md-5" style="margin-right:-5em;">
+              <a routerLink="/course/{{myCourse.id}}">
+                <div class="other-match-image-container">
+                  <img *ngIf="myCourse.multimedia.url!==null && myCourse.multimedia.url!==undefined"
+                       [src]="myCourse.multimedia.url"
+                       class="image-border"/>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-7 py-1">
+              <div class="text-right">
+                <a routerLink="/course/{{myCourse.id}}">
+                  <span class="green-title title-course" [textContent]="myCourse.title"></span>
+                </a>
+              </div>
+              <div class="row mt-2 text-right course-description">
+                <div class="col-md-12 archive-subtitle mt-1">
+                  <span>استاد : </span> <span class="mx-3" [textContent]="myCourse.teacher"></span>
+                </div>
+                <div class="col-md-12 archive-subtitle mt-1">
+                  <span>تاریخ شروع‌:</span> <span class="mx-3" [textContent]="myCourse.startTime | timeToDate"></span>
+                </div>
+                <div class="col-md-12 archive-subtitle mt-1">
+                  <span>تاریخ پایان:</span> <span class="mx-3" [textContent]="myCourse.expireTime | timeToDate"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

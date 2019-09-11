@@ -1,0 +1,106 @@
+@import "../../../scss/variable";
+
+.step-list-container {
+  background-color: white;
+  border-radius: $box-list-border-radius;
+
+  .step-row-container {
+
+  }
+
+  .step-row {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .sub-title {
+    font-size: $font-size-small;
+  }
+}
+
+.step-multimedia-container {
+  align-items: center;
+  display: flex;
+
+  .media-row {
+    align-items: center;
+    display: flex;
+
+    .circle {
+      border: 1px #15b0a8 solid;
+      border-radius: 50%;
+      padding: 0.5em;
+      position: relative;
+      width: 40px;
+      height: 40px;
+
+      .download {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+      }
+    }
+
+    .title {
+      position: absolute;
+      right: 70px;
+      top: 0;
+      font-size: $font-size-small;
+    }
+
+    .size {
+      position: absolute;
+      right: 70px;
+      bottom: 0;
+      direction: ltr;
+      font-size: $font-size-very-small;
+    }
+  }
+}
+
+.quiz-button {
+  font-size: $font-size-small;
+}
+
+.match-info-box {
+  background-color: white;
+  padding: 1em;
+}
+
+.button-match-step {
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: $border-radius;
+  background-color: $color-base-site;
+  padding: 0.5em 1.3em;
+}
+
+.button-match-step:hover {
+  background-color: $button-blue-color-hover;
+}
+
+.button-match-step:active {
+  background-color: $button-blue-color-active;
+}
+
+.button-match-step-disable {
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: $border-radius;
+  background-color: $button-disable-color;
+  padding: 0.5em 1.3em;
+}
+
+.quiz-result-container {
+  border: 1px $border-color solid;
+  padding: 0.5em;
+  border-radius: $border-radius;
+}
+
+
+

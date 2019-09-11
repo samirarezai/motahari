@@ -1,0 +1,75 @@
+<app-loading *ngIf="lastCourseList===undefined"></app-loading>
+<div style="position: relative">
+  <app-top-background [isSmall]="false"></app-top-background>
+  <div class="books-container">
+    <div class="container course-main" *ngIf="lastCourseList!==undefined" style="top: 5em">
+      <div class="row">
+        <div class="col-md-6">
+          <img [src]="lastCourseList[0].multimedia.url" class="img-fluid image-border public-box-shadow"
+               style="width: 100%; height: 300px;"/>
+        </div>
+        <div class="col-md-6">
+          <div class="book-title" [textContent]="lastCourseList[0].title"></div>
+          <div class="row mt-3">
+            <div class="col-md-6 text-right">
+              <div class="sample-title my-2">
+                <span>نام استاد‌ : </span> <span class="mr-1" [textContent]="lastCourseList[0].teacher"></span>
+              </div>
+              <div class="sample-title mt-1">
+                <span *ngIf="lastCourseList[0].price!==0">قیمت : </span>
+                <span *ngIf="lastCourseList[0].price!==0" class="mx-3" [textContent]="lastCourseList[0].price"></span>
+                <span *ngIf="lastCourseList[0].price!==0">تومان</span>
+                <span *ngIf="lastCourseList[0].price===0">رایگان</span>
+              </div>
+            </div>
+            <div class="col-md-6" style="display: flex">
+              <div class="col-md-10 my-auto mr-auto">
+                <a routerLink="/course/{{lastCourseList[0].id}}">
+                  <button class="button-top">اطلاعات بیشتر</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5 text-justify">
+            <div class="col-md-12">
+              <span [textContent]="lastCourseList[0].description"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container course-category-container">
+  <div class="mt-5 pt-5">
+    <div *ngFor="let courseCategory of courseCategoryList">
+      <div class="mt-5 col-md-12">
+        <div class="row">
+          <span class="title-with-underline main-title" [textContent]="courseCategory.title"></span>
+        </div>
+      </div>
+      <div class="col-md-12 mt-4">
+        <div class="row">
+          <div class="col-md-4 mt-3 course-child" *ngFor="let course of courseCategory.courseList">
+            <a routerLink="/course/{{course.id}}" *ngIf="course.multimedia!==null && course.multimedia.url!==null">
+              <div class="public-box-shadow image-border course-box">
+                <div class="detail">
+                  <span [textContent]="course.title"></span>
+                  <div class="price-text" *ngIf="course.price!==0">
+                    <span [textContent]="course.price"></span>
+                    <span class="mr-1">تومان</span>
+                  </div>
+                  <div class="price-text" *ngIf="course.price===0">
+                    <span>رایگان</span>
+                  </div>
+                </div>
+                <img [src]="course.multimedia.url"/>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

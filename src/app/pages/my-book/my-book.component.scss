@@ -1,0 +1,28 @@
+@import "../../../scss/variable";
+
+.myBook-word-underline {
+  position: absolute;
+  bottom: 7px;
+  height: 5px;
+  width: 80px;
+  right: 38px;
+  border-radius: 20px;
+}
+
+.myAudio-word-underline {
+  position: absolute;
+  bottom: 7px;
+  height: 5px;
+  width: 110px;
+  right: 13.5%;
+  border-radius: 20px;
+}
+
+.myLecture-word-underline {
+  position: absolute;
+  bottom: 7px;
+  height: 5px;
+  width: 100px;
+  right: 26%;
+  border-radius: 20px;
+}

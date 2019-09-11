@@ -1,0 +1,28 @@
+<div class="sidenav" id="mySidenav">
+  <div class="gradient-bg"></div>
+  <div class="repeat-shape"></div>
+  <div class="inside-nav">
+    <div class="top-username-container">
+      <div class="col-m-12 py-4">
+        <div class="pr-3">
+          <span *ngIf="userInfo!==null" [textContent]="userInfo.firstName"></span>
+        </div>
+        <div class="pr-3 phone-number mt-3">
+          <span *ngIf="userInfo!==null" [textContent]="userInfo.mobile"></span>
+        </div>
+      </div>
+    </div>
+    <a class="closebtn" (click)="closeMenu()">&times;</a>
+    <div class="menu-item-container">
+      <a routerLink="profile" (click)="closeMenu()">حساب کاربری</a>
+      <a routerLink="my-rate" (click)="closeMenu()">امتیاز کاربری</a>
+      <a routerLink="my-book" (click)="closeMenu()">کتابخانه من</a>
+      <a routerLink="my-course" (click)="closeMenu()">دوره‌های آموزشی من</a>
+      <a routerLink="my-match" (click)="closeMenu()">مسابقات من</a>
+      <a routerLink="my-certificate" (click)="closeMenu()">گواهینامه‌های من</a>
+      <a routerLink="my-introduce" (click)="closeMenu()">معرفی به دوستان</a>
+      <a (click)="onLogout()" *ngIf="isLoggedIn$ | async">خروج از سایت</a>
+      <!--<a href="#" (click)="closeMenu()">خروج</a>-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="buy-modal-container">
+  <a (click)="onClose()" class="close-position">
+    <div class="icon-close"></div>
+  </a>
+  <div class="text-center buy-top">
+    <span style="font-size: 18px;">خرید</span>
+  </div>
+  <div class="col-md-12 buy-bottom-container">
+    <div class="row">
+      <div class="col-md-12 p-4">
+        <div class="d-flex align-items-center">
+          <span class="icon-about ml-1"></span>
+          <span>آیا از خرید با جزئیات زیر اطمینان دارید؟</span>
+        </div>
+        <div class="mt-3">
+          <span class="triangle-left"></span>
+          <span>نوع خرید : </span>
+          <span [textContent]="title"></span>
+        </div>
+        <div class="mt-1">
+          <span class="triangle-left"></span>
+          <span>قیمت : </span>
+          <span [textContent]="price"></span>
+          <span class="mr-1">تومان</span>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <a (click)="onBuyClick()">
+              <button class="blue-button-border">بله، اطمینان دارم</button>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a (click)="onClose()">
+              <button class="cancel-buy-button">بازگشت</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 text-center pt-2" *ngIf="showMessage===true">
+        <span [textContent]="message" [ngStyle]="{'color': !isSuccess ? 'red':''}"></span>
+      </div>
+    </div>
+  </div>
+</div>

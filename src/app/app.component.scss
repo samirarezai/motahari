@@ -1,0 +1,233 @@
+@charset "utf-8";
+@import "../scss/variable";
+
+
+body {
+  font-family: 'iran', 'iransfb', sans-serif !important;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+
+#body {
+  padding-bottom: $main-padding-bottom;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+#modal-container {
+  width: 55%;
+  height: 40%;
+  min-height: 256px;
+  margin: 0 auto;
+  display: table;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border: 1px solid;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  box-shadow: 0 0 2px 1px black;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+
+#modal-container-workbook {
+  width: 38%;
+  height: 50%;
+  overflow-y: auto;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border: 2px $border-color solid;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay-workbook {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(226, 226, 226, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+#modal-container-buy {
+  width: 30%;
+  height: 33%;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border: 2px $border-color solid;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay-buy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(226, 226, 226, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+#modal-container-step-description {
+  width: 30%;
+  //height: 33%;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay-step-description {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(226, 226, 226, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+#modal-container-result-quiz {
+  width: 27%;
+  height: 40%;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border: 2px $border-color solid;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay-result-quiz {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(226, 226, 226, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+
+#modal-container-invitation-code {
+  width: 27%;
+  height: 40%;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border: 2px $border-color solid;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
+#overlay-step-invitation-code {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(226, 226, 226, 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+#notification-container {
+  width: 29%;
+  height: 9%;
+  margin: 0 auto;
+  display: table;
+  position: fixed;
+  left: 1%;
+  bottom: 5%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: white;
+  z-index: 100;
+  border-radius: $border-radius-modal;
+}
+
